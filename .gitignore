@@ -1,0 +1,6 @@
+data/
+.venv-mesh/
+.venv-cad/
+.venv-draft/
+pipeline/config.local.toml
+__pycache__/

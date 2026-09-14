@@ -1,0 +1,6 @@
+# Copy to config.local.toml and fill in. config.local.toml is git-ignored.
+scan_full = "<absolute path to King Quad 400 Full Res.stl>"
+scan_low = "<absolute path to King Quad 400 Low Res.stl>"
+data_root = "data"                      # relative to the repo root, or absolute
+cloudcompare_exe = "<absolute path to CloudCompare.exe>"
+freecad_cmd = "<absolute path to FreeCADCmd.exe, or empty>"
