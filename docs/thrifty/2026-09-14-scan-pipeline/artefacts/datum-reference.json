@@ -1,0 +1,192 @@
+{
+ "frame": "ISO 8855: X forward, Y left, Z up; origin on the floor plane, on the symmetry plane, at the rear axle housing axis X",
+ "T_scan_to_datum": [
+  [
+   -0.749159,
+   0.661883,
+   -0.025914,
+   735.377171
+  ],
+  [
+   -0.662349,
+   -0.748103,
+   0.040434,
+   18.170485
+  ],
+  [
+   0.007376,
+   0.047456,
+   0.998846,
+   1141.59892
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "X": [
+  -0.749159,
+  0.661883,
+  -0.025914
+ ],
+ "Y": [
+  -0.662349,
+  -0.748103,
+  0.040434
+ ],
+ "Z": [
+  0.007376,
+  0.047456,
+  0.998846
+ ],
+ "floor": {
+  "inliers_fraction_of_1M_vertices": 0.133,
+  "rms_mm": 1.26
+ },
+ "symmetry": {
+  "rotation_from_pca_deg": 12.08,
+  "icp_final_fitness": 0.539,
+  "icp_final_rmse_mm": 3.18,
+  "schedule_mm": [
+   40,
+   20,
+   10,
+   6,
+   6
+  ]
+ },
+ "rear_axle_housing": {
+  "left": {
+   "r": 24.6,
+   "y": 237.0,
+   "z": 296.6,
+   "rms": 1.05
+  },
+  "right": {
+   "r": 23.9,
+   "y": -210.4,
+   "z": 302.7,
+   "rms": 1.15
+  },
+  "x_span_between_sides_mm": 0.8
+ },
+ "vertical_r64_cylinders": {
+  "left_y": 378.2,
+  "right_y": -382.2,
+  "x": 204,
+  "z": 350
+ },
+ "crops": {
+  "engine-bay": {
+   "box": [
+    [
+     400,
+     1100
+    ],
+    [
+     -350,
+     350
+    ],
+    [
+     80,
+     800
+    ]
+   ],
+   "points": 1452049,
+   "fraction": 0.1204
+  },
+  "tank-mounts": {
+   "box": [
+    [
+     300,
+     1200
+    ],
+    [
+     -250,
+     250
+    ],
+    [
+     620,
+     1000
+    ]
+   ],
+   "points": 987554,
+   "fraction": 0.0819
+  },
+  "front-flange": {
+   "box": [
+    [
+     950,
+     1350
+    ],
+    [
+     -200,
+     200
+    ],
+    [
+     200,
+     650
+    ]
+   ],
+   "points": 1263125,
+   "fraction": 0.1047
+  },
+  "rear-flange": {
+   "box": [
+    [
+     300,
+     650
+    ],
+    [
+     -250,
+     250
+    ],
+    [
+     150,
+     550
+    ]
+   ],
+   "points": 533262,
+   "fraction": 0.0442
+  },
+  "duct-route": {
+   "box": [
+    [
+     450,
+     1150
+    ],
+    [
+     -180,
+     180
+    ],
+    [
+     150,
+     800
+    ]
+   ],
+   "points": 1171656,
+   "fraction": 0.0971
+  },
+  "rear-axle": {
+   "box": [
+    [
+     -150,
+     150
+    ],
+    [
+     -480,
+     480
+    ],
+    [
+     150,
+     480
+    ]
+   ],
+   "points": 1340908,
+   "fraction": 0.1112
+  }
+ },
+ "source": "fullres_dec_5M.stl derived from King Quad 400 Full Res.stl, 2026-09-14"
+}
