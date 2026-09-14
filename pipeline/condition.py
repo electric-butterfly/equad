@@ -109,6 +109,9 @@ def step3(cfg, ctx: dict) -> dict:
 
     t0 = time.time()
     ms = load_and_clean_fragments(cfg, ctx)
+    full_res_id = ms.current_mesh_id()
+
+    ms.generate_copy_of_current_mesh()  # decimate a duplicate; the full-res mesh (fed to step 5) must stay intact
     ms.meshing_decimation_quadric_edge_collapse(
         targetfacenum=5_000_000, preservenormal=True, preservetopology=True,
         preserveboundary=True, planarquadric=True, qualitythr=0.3,
@@ -122,6 +125,8 @@ def step3(cfg, ctx: dict) -> dict:
     )
     faces_1m = ms.current_mesh().face_number()
     ms.save_current_mesh(str(out_1m))
+
+    ms.set_current_mesh(full_res_id)
 
     metrics = {"faces_5M": faces_5m, "faces_1M": faces_1m}
     log_step(cfg, 3, "decimate", metrics, time.time() - t0)
@@ -443,7 +448,7 @@ def run_cloudcompare_ransac(cfg, pts_ply: Path, out_dir: Path, primitives: str,
     return primitives_out
 
 
-def step9(cfg, axes: dict) -> dict:
+def step9(cfg, floor: dict, symmetry: dict, axes: dict) -> dict:
     d = derived(cfg)
     rear_json = d / "rear_axle.json"
     if rear_json.exists():
@@ -454,22 +459,32 @@ def step9(cfg, axes: dict) -> dict:
 
     t0 = time.time()
     x_axis = np.array(axes["X"]); y_axis = np.array(axes["Y"]); z_axis = np.array(axes["Z"])
-    r_prov = np.array([x_axis, y_axis, z_axis])
 
     mesh = trimesh.load(str(d / "chassis_scan_nofloor_1M.stl"), process=False)
     verts_1m = np.asarray(mesh.vertices)
-    origin_prov = verts_1m.mean(axis=0)
+    centroid = verts_1m.mean(axis=0)
+    x_centroid = float(x_axis.dot(centroid))
 
     mesh5 = trimesh.load(str(d / "chassis_scan_nofloor_5M.stl"), process=False)
     verts5 = np.asarray(mesh5.vertices)
     normals5 = np.asarray(mesh5.vertex_normals)
 
-    coords = (verts5 - origin_prov) @ r_prov.T
-    x_rear = np.percentile(coords[:, 0], 0.5)
+    # Provisional frame: X relative to the vehicle centroid (the axle X is not yet known);
+    # Y relative to the symmetry plane and Z relative to the floor plane (both already fixed
+    # by steps 4 and 7), so the box bounds below line up with the datum-frame heights and
+    # left/right symmetry the acceptance criteria are stated in.
+    x_prov = verts5 @ x_axis - x_centroid
+    y_prov = verts5 @ y_axis + symmetry["d"]
+    z_prov = verts5 @ z_axis + floor["d"]
+
+    # The upper X bound is relative to the rear-most percentile too, not an absolute
+    # centroid-relative coordinate: an absolute +800 reaches nearly the full vehicle length
+    # from a centroid this far forward of the rear tip, dragging in the whole underbody.
+    x_rear = np.percentile(x_prov, 0.5)
     mask = (
-        (coords[:, 0] >= x_rear + 100) & (coords[:, 0] <= 800)
-        & (np.abs(coords[:, 1]) < 480)
-        & (coords[:, 2] >= 150) & (coords[:, 2] <= 480)
+        (x_prov >= x_rear + 100) & (x_prov <= x_rear + 800)
+        & (np.abs(y_prov) < 480)
+        & (z_prov >= 150) & (z_prov <= 480)
     )
 
     crop_verts = verts5[mask]
@@ -488,12 +503,28 @@ def step9(cfg, axes: dict) -> dict:
         axis = np.array(c["axis"])
         angle = float(np.degrees(np.arccos(np.clip(abs(axis.dot(y_axis)), -1, 1))))
         c["angle_to_Y_deg"] = round(angle, 2)
+        c["y_prov"] = round(float(y_axis.dot(np.array(c["centre"])) + symmetry["d"]), 2)
         if angle < 8 and 15 <= c["radius"] <= 130 and c["support"] > 2000:
             kept.append(c)
 
+    # The axle housings are joined by a connecting shaft, which the loose axis/radius/support
+    # filter also passes as several lower-support sub-segment fits along its length, on top of
+    # near-duplicate re-detections of the housings themselves. Dedup by taking the single
+    # highest-support candidate on each side of the symmetry plane (Y > 0 and Y < 0) - the
+    # housings dominate every side's point count by a wide margin over any shaft segment.
+    left = [c for c in kept if c["y_prov"] > 0]
+    right = [c for c in kept if c["y_prov"] < 0]
+    deduped = []
+    if left:
+        deduped.append(max(left, key=lambda c: c["support"]))
+    if right:
+        deduped.append(max(right, key=lambda c: c["support"]))
+    kept_all = kept
+    kept = deduped
+
     result = {
         "n_crop_points": len(crop_verts), "n_candidates": len(candidates),
-        "candidates": candidates, "kept": kept, "n_kept": len(kept),
+        "candidates": candidates, "kept_before_dedup": kept_all, "kept": kept, "n_kept": len(kept),
     }
     with open(rear_json, "w") as f:
         json.dump(result, f, indent=1)
@@ -767,12 +798,12 @@ def run_steps(cfg, steps_to_run):
             floor = floor or compute_floor_plane(cfg)
             symmetry = symmetry or step7(cfg, floor)
             axes = axes or step8(cfg, floor, symmetry)
-            rear_axle = step9(cfg, axes)
+            rear_axle = step9(cfg, floor, symmetry, axes)
         elif n == 10:
             floor = floor or compute_floor_plane(cfg)
             symmetry = symmetry or step7(cfg, floor)
             axes = axes or step8(cfg, floor, symmetry)
-            rear_axle = rear_axle or step9(cfg, axes)
+            rear_axle = rear_axle or step9(cfg, floor, symmetry, axes)
             datum = step10(cfg, floor, symmetry, axes, rear_axle)
         elif n == 11:
             if datum is None:
