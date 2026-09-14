@@ -572,6 +572,9 @@ def step10(cfg, floor: dict, symmetry: dict, axes: dict, rear_axle: dict) -> dic
     t_matrix[:3, :3] = r_mat
     t_matrix[:3, 3] = t_vec
 
+    left_datum = r_mat @ np.array(left["centre"]) + t_vec
+    right_datum = r_mat @ np.array(right["centre"]) + t_vec
+
     faces = {}
     mesh_full = trimesh.load(str(d / "chassis_scan_nofloor.ply"), process=False)
     faces["after_floor"] = len(mesh_full.faces)
@@ -612,9 +615,9 @@ def step10(cfg, floor: dict, symmetry: dict, axes: dict, rear_axle: dict) -> dic
             "icp_final_rmse_mm": symmetry["icp_final_rmse_mm"],
         },
         "rear_axle_housing": {
-            "left": {"r": left["radius"], "y": left["centre"][1], "z": left["centre"][2], "rms": left["rms"]},
-            "right": {"r": right["radius"], "y": right["centre"][1], "z": right["centre"][2], "rms": right["rms"]},
-            "x_span_mm": round(abs(left["centre"][0] - right["centre"][0]), 2),
+            "left": {"r": left["radius"], "y": round(left_datum[1], 1), "z": round(left_datum[2], 1), "rms": left["rms"]},
+            "right": {"r": right["radius"], "y": round(right_datum[1], 1), "z": round(right_datum[2], 1), "rms": right["rms"]},
+            "x_span_mm": round(abs(left_datum[0] - right_datum[0]), 2),
         },
         "faces": faces,
         "outputs": {

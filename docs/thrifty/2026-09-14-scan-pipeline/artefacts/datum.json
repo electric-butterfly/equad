@@ -1,0 +1,79 @@
+{
+ "frame": "ISO 8855, origin on floor plane and symmetry plane at rear axle housing X",
+ "T_scan_to_datum": [
+  [
+   -0.7491685449357928,
+   0.6618546391587717,
+   -0.02636148521611227,
+   735.6402882883866
+  ],
+  [
+   -0.6623488740883798,
+   -0.7481583089214402,
+   0.039409564647005346,
+   18.115333679002255
+  ],
+  [
+   0.0063608389889039055,
+   0.046984906255339486,
+   0.9988753467332819,
+   1141.6323666021165
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ]
+ ],
+ "X": [
+  -0.7491685449357928,
+  0.6618546391587717,
+  -0.02636148521611227
+ ],
+ "Y": [
+  -0.6623488740883798,
+  -0.7481583089214402,
+  0.039409564647005346
+ ],
+ "Z": [
+  0.0063608389889039055,
+  0.046984906255339486,
+  0.9988753467332819
+ ],
+ "floor": {
+  "inliers_fraction": 0.1586,
+  "rms_mm": 1.161
+ },
+ "symmetry": {
+  "rotation_from_pca_deg": 11.617,
+  "icp_final_fitness": 0.5389,
+  "icp_final_rmse_mm": 3.177
+ },
+ "rear_axle_housing": {
+  "left": {
+   "r": 25.26,
+   "y": 241.3,
+   "z": 297.3,
+   "rms": 0.962
+  },
+  "right": {
+   "r": 28.23,
+   "y": -210.4,
+   "z": 297.2,
+   "rms": 0.791
+  },
+  "x_span_mm": 0.1
+ },
+ "faces": {
+  "after_floor": 31097210,
+  "after_fragments": 35027805,
+  "loaded": 35074344
+ },
+ "outputs": {
+  "full_ply": "C:\\SANDPIT\\equad\\.claude\\worktrees\\wp3-start-4b3e7c\\data\\derived\\chassis_datum_full.ply",
+  "5M": "C:\\SANDPIT\\equad\\.claude\\worktrees\\wp3-start-4b3e7c\\data\\derived\\chassis_datum_5M.stl",
+  "1M": "C:\\SANDPIT\\equad\\.claude\\worktrees\\wp3-start-4b3e7c\\data\\derived\\chassis_datum_1M.stl",
+  "200k": "C:\\SANDPIT\\equad\\.claude\\worktrees\\wp3-start-4b3e7c\\data\\derived\\chassis_datum_200k.stl"
+ }
+}
