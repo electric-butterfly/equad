@@ -1,0 +1,80 @@
+# Battery box parameters. Sources: CALB L148N58A supplier drawing (cell), owner design brief
+# 2026-09-15 (block, enclosure, electrical), SIAECOSYS QSJ138D-90 outline drawing (motor),
+# Littelfuse JLLN datasheet (fuse). OWNER = replace from a measurement; default stands until then.
+
+[cell]                        # CALB L148N58A
+width = 148.24                # X, terminal axis, drawing "W 148.24 +/- 0.15"
+thickness = 26.66             # Y, drawing "T 26.66 +/- 0.15 at 70 % SOC, 100 +/- 10 kgf"
+height = 102.8                # Z, body, drawing "102.8 +/- 0.3"
+height_to_stud = 105.9        # Z, drawing "105.9 +/- 0.2"
+stud_pitch = 110.6            # X between terminal centres, drawing "110.6 +/- 0.3"
+stud_d = 10.88                # terminal pad diameter, drawing; thread size not on the drawing
+pad = 3.0                     # OWNER: supplier-provided inter-cell pad, measure it. BOM says 3
+swell = 1.0                   # per-cell growth allowance along Y at full charge; design assumption
+
+[block]
+columns = [8, 9, 9]           # cells per column, front to rear along X
+column_pitch_x = 152.0        # 148.24 + 3.76 clearance between columns
+fuse_slot = "inboard"         # the front column's empty ninth position sits at the inboard end
+flip_odd = true               # every second cell in a column rotated 180 deg about Z so terminals alternate
+
+[enclosure]
+internal = [460.0, 300.0, 200.0]   # X, Y, Z clear inside dimensions
+sheet = 3.0                   # OWNER: sheet thickness; 3 mm assumed
+lid_face = "+Z"               # the terminal face; removable as a whole
+lid_inset = 15.0              # bolt line inset from the outer edge
+lid_bolt_d = 6.5              # M6 clearance
+lid_bolt_pitch_max = 60.0     # bolts along every edge at no more than this pitch
+end_plate = 6.0               # fixed reaction plate at the inboard end of the stack
+partition = 3.0               # plate between the fuse bay and the front column's cells
+compression_plate = 6.0       # floating plate at the outboard end of the stack
+compression_wall = "outboard" # OWNER: wall the grub screws pass through; outboard assumed
+compression_pairs = 5         # pairs of grub screws along X
+compression_rows_z = [30.0, 75.0]   # the two rows, height above the floor
+compression_screw_d = 8.0     # M8 grub screws
+compression_travel_min = 10.0 # clear travel required between the plate and the wall
+chamfer_front_top = 0.0       # leg length of a 45 deg chamfer on the front top outer edge; 0 = none
+
+[electrical]
+fuses_per_box = 2             # Littelfuse JLLN800 Class T, one per pole; BOM lists four
+fuse_envelope = [90.0, 45.0, 60.0]   # X, Y, Z envelope of one fuse in its holder; OWNER: confirm.
+                              # Datasheet 700-800 A row: A = 85.7, B = 56.4; the other columns did not parse
+headroom = 60.0               # clear height above stud tops for busbars, nuts, cover and leads
+cable_exit_face = "inboard"   # end wall carrying the power and sense exits
+cable_exit_d = [20.0, 20.0, 25.0]   # two power glands and one sense gland, diameters
+cable_exit_z = 160.0          # gland centre height above the floor
+
+[placement]                   # left box; the right box is its mirror through Y = 0. Section 4.6
+x = 700.0                     # box-local origin X, datum frame
+y = 300.0                     # box-local origin Y, positive = left
+z = 350.0                     # box-local origin Z
+lean_deg = 30.0               # lid normal tilts outboard by this angle; stack axis descends outboard
+clearance_min = 10.0          # a placement passes when no frame point is inside and this is clear
+
+[sweep]                       # WP-04 grid, applied to the left box; the right box mirrors it
+x = [650.0, 700.0, 750.0]
+y_range = [200.0, 400.0, 25.0]      # start, stop inclusive, step
+z_range = [300.0, 450.0, 25.0]
+lean_range = [0.0, 40.0, 5.0]
+samples = 8000                # surface samples per placement for the distance query
+
+[motor]                       # SIAECOSYS QSJ138D-90-4000W outline drawing, owner supplied 2026-09-15
+length = 258.8                # overall along the axis, drawing "258.8 +/- 2"
+housing_d = 210.0             # OWNER: tape-measure the finned housing; not dimensioned on the drawing
+spigot_d = 120.0              # output-end spigot, drawing "120 -0.2"
+bolt_circle_d = 131.0         # drawing "131 +/- 0.2", six M8
+axis = "Y"                    # cross-shaft layout; motor axis across the vehicle
+centre = [320.0, 0.0, 450.0]  # placeholder: behind the boxes; WP-04 reports its own clearance
+
+[keepout]                     # propeller shaft plus the 150 x 100 duct, along X on the centreline
+axis_y = 0.0
+axis_z = 340.0                # OWNER: confirm from the front differential output height
+radius = 60.0
+x_range = [400.0, 1200.0]
+
+[chassis]                     # produced by the scan pipeline, local and git-ignored
+mesh = "data/derived/chassis_datum_5M.stl"      # 4 021 243 faces after floor removal
+mesh_1m = "data/derived/chassis_datum_1M.stl"   # for section renders
+mesh_viewer = "data/derived/chassis_datum_200k.stl"
+interfaces = "docs/thrifty/2026-09-14-scan-pipeline/artefacts/interfaces.json"
+primitives_engine_bay = "docs/thrifty/2026-09-14-scan-pipeline/artefacts/primitives-engine-bay.json"
