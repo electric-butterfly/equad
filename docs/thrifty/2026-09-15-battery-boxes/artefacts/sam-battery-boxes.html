@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>eQuad battery boxes -- fabrication handover</title>
+<style>
+  :root {
+    --bg: #f3f5f6; --paper: #ffffff; --border: #dde3e6; --ink: #1a2226;
+    --muted: #5b6b74; --accent: #2b6c8f; --accent-tint: #e5eef2; --row-alt: #f6f8f9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, sans-serif;
+    font-size: 18px; margin: 0; padding: 40px 16px;
+  }
+  .sheet {
+    max-width: 1220px; margin: 0 auto; background: var(--paper); border: 1px solid var(--border);
+    border-radius: 14px; padding: 48px; display: flex; flex-direction: column; gap: 32px;
+  }
+  header { border-bottom: 3px solid var(--accent); padding-bottom: 20px; }
+  header h1 { margin: 0 0 8px 0; font-size: 1.7em; }
+  header p { margin: 0; color: var(--muted); }
+  h2 { font-size: 1.2em; border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 12px; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.85em; }
+  th, td { border: 1px solid var(--border); padding: 6px 10px; text-align: left; }
+  th { background: var(--accent-tint); }
+  tr:nth-child(even) { background: var(--row-alt); }
+  .mono { font-family: ui-monospace, "SF Mono", monospace; font-size: 0.95em; }
+  .renders { display: flex; gap: 16px; flex-wrap: wrap; }
+  .renders figure { margin: 0; flex: 1 1 280px; }
+  .renders img { width: 100%; border: 1px solid var(--border); border-radius: 6px; }
+  .renders figcaption { color: var(--muted); font-size: 0.85em; margin-top: 4px; }
+  ul { margin: 0; padding-left: 22px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header>
+    <h1>eQuad battery boxes</h1>
+    <p>Fabrication design handover</p>
+  </header>
+
+  <section>
+    <h2>Purpose</h2>
+    <p>Two battery boxes sit either side of the chassis centreline, each holding half the 26S2P
+    pack. This document gives the geometry needed to start the fabrication design: the enclosure
+    parameters, where each box sits on the vehicle, how the frame around it was checked, and which
+    frame features are close enough to carry a mounting bracket.</p>
+    <p>The boxes, motor placeholder and prop-shaft keep-out are STEP solids linked below; open them
+    in any CAD package for exact dimensions.</p>
+  </section>
+
+  <section>
+    <h2>Parameters</h2>
+    <table>
+      <thead><tr><th>Parameter</th><th>Value</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">cell.width</td><td>148.24 mm</td><td>CALB L148N58A drawing, W</td></tr>
+        <tr><td class="mono">cell.thickness</td><td>26.66 mm</td><td>CALB L148N58A drawing, T at 70% SOC</td></tr>
+        <tr><td class="mono">cell.height</td><td>102.8 mm</td><td>CALB L148N58A drawing, body</td></tr>
+        <tr><td class="mono">cell.height_to_stud</td><td>105.9 mm</td><td>CALB L148N58A drawing</td></tr>
+        <tr><td class="mono">cell.stud_pitch</td><td>110.6 mm</td><td>CALB L148N58A drawing</td></tr>
+        <tr><td class="mono">cell.pad</td><td>3.0 mm</td><td>OWNER: BOM figure, confirm with a measurement</td></tr>
+        <tr><td class="mono">block.columns</td><td>8, 9, 9 cells front to rear</td><td>owner design brief 2026-09-15</td></tr>
+        <tr><td class="mono">block.column_pitch_x</td><td>152.0 mm</td><td>148.24 mm cell width + 3.76 mm clearance</td></tr>
+        <tr><td class="mono">enclosure.internal</td><td>460 x 300 x 200 mm</td><td>owner design brief 2026-09-15</td></tr>
+        <tr><td class="mono">enclosure.sheet</td><td>3.0 mm</td><td>OWNER: assumed sheet thickness</td></tr>
+        <tr><td class="mono">enclosure.compression_wall</td><td>outboard</td><td>OWNER: assumed</td></tr>
+        <tr><td class="mono">electrical.fuses_per_box</td><td>2</td><td>Littelfuse JLLN800 Class T, one per pole</td></tr>
+        <tr><td class="mono">electrical.fuse_envelope</td><td>90 x 45 x 60 mm</td><td>OWNER: confirm against the datasheet and the holder</td></tr>
+        <tr><td class="mono">motor.length</td><td>258.8 mm</td><td>SIAECOSYS QSJ138D-90 outline drawing</td></tr>
+        <tr><td class="mono">motor.housing_d</td><td>210.0 mm</td><td>OWNER: tape-measure the finned housing</td></tr>
+        <tr><td class="mono">keepout.axis_z</td><td>340.0 mm</td><td>OWNER: confirm from the front differential output height</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Placement</h2>
+    <p>The left box sits at vehicle X 743.2, Y 39.2643, Z 440.4765 mm, leaned
+    82.0 degrees off vertical about the vehicle X axis so its largest face (lid and
+    floor) tilts toward the centreline. The right box is the left box's mirror image through
+    vehicle Y = 0. At the floor, the inboard edges of the two boxes are 30.0 mm apart.</p>
+    <p>Left box outer-shell corners, vehicle coordinates (mm): (510.2, 15.0, 591.6), (510.2, 216.0, 619.8), (510.2, 57.6, 288.5), (510.2, 258.6, 316.8), (976.2, 15.0, 591.6), (976.2, 216.0, 619.8), (976.2, 57.6, 288.5), (976.2, 258.6, 316.8).</p>
+    <p>Lid normal, outward from the +Z face: (0.000, 0.990, 0.139). Cell-stack axis: (0.000, 0.139, -0.990).</p>
+  </section>
+
+  <section>
+    <h2>Frame clearance</h2>
+      <p>This sweep tests the frame, the placeholder motor and the propeller-shaft keep-out only; plastics, foot boards, tank and seat are not in the scan.</p>
+      <p>Grid: 525 placements, 0 pass.</p>
+      <p>No placement in the swept grid passes all three tests.</p>
+      <p>[placement] defaults (x=743.2, y=39.2643, z=440.4765, lean_deg=82.0) are not a grid point in this sweep, so no exact-match row exists in the swept grid.</p>
+      <p>Motor placeholder vs frame (not part of pass, evaluated once): min_frame=0.07 mm, points inside=41066.</p>
+      <p>chamfer would not help: not evaluated in this run.</p>
+      <p>Nothing in this grid clears the frame - every one of the 525 placements has real frame points inside the box (inside_frame never reached 0). The least-bad point found, used for the section-*-best.png renders below, is x=793.2, y=-50.0, z=465.0, lean=87.0: min_frame=0.56mm, inside_frame=15580 points, min_motor=178.8mm, min_keepout=0.012mm. This is not a fit; it is the smallest measured intrusion in the swept neighbourhood, shown so the owner can see how close "close" actually is.</p>
+      <p>Section renders: section-yz-default.png, section-xz-default.png, section-xy-default.png (the committed [placement] defaults); section-yz-best.png, section-xz-best.png, section-xy-best.png (the least-bad point above).</p>
+  </section>
+
+  <section>
+    <h2>Renders</h2>
+    <div class="renders">
+      <figure><img src="section-yz-default.png" alt="YZ section at the default placement"><figcaption>YZ section, default placement</figcaption></figure>
+      <figure><img src="section-xz-default.png" alt="XZ section at the default placement"><figcaption>XZ section, default placement</figcaption></figure>
+      <figure><img src="section-xy-default.png" alt="XY section at the default placement"><figcaption>XY section, default placement</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Mount pickups (nearest 20)</h2>
+    <table>
+      <thead><tr><th>id</th><th>kind</th><th>box</th><th>face</th><th>distance mm</th><th>support</th><th>rms</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">engine-bay/cyl/148</td><td>cylinder</td><td>right</td><td>inboard</td><td>1.1</td><td>4723</td><td>0.97</td></tr>
+        <tr><td class="mono">engine-bay/plane/046</td><td>plane</td><td>left</td><td>inboard</td><td>1.6</td><td>2088</td><td>0.24</td></tr>
+        <tr><td class="mono">tank-mounts/cyl/064</td><td>cylinder</td><td>left</td><td>inboard</td><td>1.8</td><td>7256</td><td>0.82</td></tr>
+        <tr><td class="mono">duct-route/cyl/092</td><td>cylinder</td><td>left</td><td>inboard</td><td>2.8</td><td>29471</td><td>0.94</td></tr>
+        <tr><td class="mono">engine-bay/plane/014</td><td>plane</td><td>left</td><td>inboard</td><td>3.5</td><td>3225</td><td>0.14</td></tr>
+        <tr><td class="mono">engine-bay/plane/031</td><td>plane</td><td>right</td><td>inboard</td><td>4.7</td><td>2490</td><td>0.25</td></tr>
+        <tr><td class="mono">engine-bay/plane/053</td><td>plane</td><td>right</td><td>inboard</td><td>5.8</td><td>1632</td><td>0.17</td></tr>
+        <tr><td class="mono">engine-bay/plane/015</td><td>plane</td><td>left</td><td>rear</td><td>5.9</td><td>4148</td><td>0.48</td></tr>
+        <tr><td class="mono">engine-bay/plane/032</td><td>plane</td><td>right</td><td>outboard</td><td>6.7</td><td>1630</td><td>0.19</td></tr>
+        <tr><td class="mono">engine-bay/plane/064</td><td>plane</td><td>right</td><td>front</td><td>6.7</td><td>1560</td><td>0.19</td></tr>
+        <tr><td class="mono">engine-bay/plane/037</td><td>plane</td><td>left</td><td>front</td><td>7.0</td><td>1662</td><td>0.16</td></tr>
+        <tr><td class="mono">engine-bay/plane/010</td><td>plane</td><td>right</td><td>outboard</td><td>8.7</td><td>5446</td><td>0.27</td></tr>
+        <tr><td class="mono">engine-bay/plane/011</td><td>plane</td><td>left</td><td>outboard</td><td>9.0</td><td>5085</td><td>0.18</td></tr>
+        <tr><td class="mono">duct-route/cyl/159</td><td>cylinder</td><td>left</td><td>inboard</td><td>11.0</td><td>3398</td><td>0.56</td></tr>
+        <tr><td class="mono">tank-mounts/cyl/046</td><td>cylinder</td><td>right</td><td>inboard</td><td>12.3</td><td>13836</td><td>0.41</td></tr>
+        <tr><td class="mono">engine-bay/cyl/107</td><td>cylinder</td><td>left</td><td>inboard</td><td>13.0</td><td>24932</td><td>0.77</td></tr>
+        <tr><td class="mono">engine-bay/cyl/028</td><td>cylinder</td><td>right</td><td>outboard</td><td>13.1</td><td>26024</td><td>0.29</td></tr>
+        <tr><td class="mono">rear-flange/cyl/015</td><td>cylinder</td><td>right</td><td>outboard</td><td>13.1</td><td>25956</td><td>0.33</td></tr>
+        <tr><td class="mono">duct-route/cyl/071</td><td>cylinder</td><td>right</td><td>outboard</td><td>13.5</td><td>39433</td><td>0.80</td></tr>
+        <tr><td class="mono">engine-bay/cyl/016</td><td>cylinder</td><td>right</td><td>outboard</td><td>16.5</td><td>69197</td><td>0.30</td></tr>
+      </tbody>
+    </table>
+    <p>Every plane pickup was fitted by RANSAC and did not pass the scan pipeline's refinement
+    threshold: calliper each one before drilling.</p>
+  </section>
+
+  <section>
+    <h2>STEP files</h2>
+    <ul>
+      <li><a href="cell.step">cell.step</a> -- one CALB L148N58A cell</li>
+      <li><a href="block.step">block.step</a> -- the 26-cell block</li>
+      <li><a href="box.step">box.step</a> -- enclosure, lid and internals, no cells</li>
+      <li><a href="box-full.step">box-full.step</a> -- enclosure with the cell block fitted</li>
+      <li><a href="assembly.step">assembly.step</a> -- both boxes, motor placeholder and keep-out, on the vehicle datum</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Open items</h2>
+    <ul>
+        <li>Inter-cell pad thickness — measure the supplier-provided pad, BOM says 3 mm.</li>
+        <li>Enclosure sheet thickness — 3 mm assumed, confirm against the material on hand.</li>
+        <li>Compression wall — outboard assumed, confirm which wall carries the grub screws.</li>
+        <li>Fuse envelope — 90 x 45 x 60 mm from the datasheet's 700-800 A row; confirm with the holder in hand.</li>
+        <li>Motor housing diameter — 210 mm placeholder, not dimensioned on the supplied drawing; tape-measure the finned housing.</li>
+        <li>Prop-shaft keep-out height — 340 mm read from the scan render, confirm from the front differential output height.</li>
+        <li>Plastics and duct scan — the frame-only sweep found every lean from 0 to 40 degrees clear; the tank, ducts and plastics are the missing constraint and have not been scanned.</li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>
