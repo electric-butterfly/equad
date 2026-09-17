@@ -69,10 +69,14 @@ lean_deg = 82.0                # OWNER 2026-09-17 final: largest face (lid/floor
 clearance_min = 10.0          # a placement passes when no frame point is inside and this is clear
 
 [sweep]                       # WP-04 grid, applied to the left box; the right box mirrors it
-x = [650.0, 700.0, 750.0]
-y_range = [200.0, 400.0, 25.0]      # start, stop inclusive, step
-z_range = [300.0, 450.0, 25.0]
-lean_range = [0.0, 40.0, 5.0]
+                               # OWNER 2026-09-17: re-centred on the actual placement (x=743.2,
+                               # y=39.2643, z=440.4765, lean_deg=82) - the old grid (lean 0-40,
+                               # y 200-400) predates the owner's hinge-rotation correction and does
+                               # not bracket the current design point at all.
+x = [693.2, 743.2, 793.2]
+y_range = [-50.0, 100.0, 25.0]      # start, stop inclusive, step
+z_range = [390.0, 490.0, 25.0]
+lean_range = [72.0, 92.0, 5.0]
 samples = 8000                # surface samples per placement for the distance query
 
 [motor]                       # SIAECOSYS QSJ138D-90-4000W outline drawing, owner supplied 2026-09-15
