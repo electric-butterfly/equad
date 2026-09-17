@@ -184,10 +184,13 @@ cable_exit_d = [20.0, 20.0, 25.0]   # two power glands and one sense gland, diam
 cable_exit_z = 160.0          # gland centre height above the floor
 
 [placement]                   # left box; the right box is its mirror through Y = 0. Section 4.6
-x = 700.0                     # box-local origin X, datum frame
-y = 300.0                     # box-local origin Y, positive = left
-z = 350.0                     # box-local origin Z
-lean_deg = 30.0               # lid normal tilts outboard by this angle; stack axis descends outboard
+x = 743.2                     # OWNER 2026-09-17: equivalent origin-based value reproducing a hinge
+                               # rotation about each box's inner-most edge - see section 4.6a
+y = 39.2643                   # OWNER 2026-09-17: back-solved so the hinge edge sits at vehicle
+                               # Y = +/-15 mm (30 mm gap); see section 4.6a
+z = 440.4765                  # OWNER 2026-09-17: back-solved with x, y for the same hinge edge,
+                               # Z = 591.57 mm; NOT verified clear of the frame (section 4.6a)
+lean_deg = 82.0                # OWNER 2026-09-17: largest face (lid/floor) 8 deg off vertical
 clearance_min = 10.0          # a placement passes when no frame point is inside and this is clear
 
 [sweep]                       # WP-04 grid, applied to the left box; the right box mirrors it
@@ -202,8 +205,10 @@ length = 258.8                # overall along the axis, drawing "258.8 +/- 2"
 housing_d = 210.0             # OWNER: tape-measure the finned housing; not dimensioned on the drawing
 spigot_d = 120.0              # output-end spigot, drawing "120 -0.2"
 bolt_circle_d = 131.0         # drawing "131 +/- 0.2", six M8
-axis = "Y"                    # cross-shaft layout; motor axis across the vehicle
-centre = [320.0, 0.0, 450.0]  # placeholder: behind the boxes; WP-04 reports its own clearance
+axis = "X"                    # OWNER 2026-09-16: in-line with the prop-shaft stack, corrected from
+                               # the original cross-vehicle assumption - see section 4.6a
+centre = [252.0, 0.0, 590.0]  # OWNER 2026-09-16: behind the boxes, clear of the rear shock by
+                               # inspection; not scan-verified - see section 4.6a
 
 [keepout]                     # propeller shaft plus the 150 x 100 duct, along X on the centreline
 axis_y = 0.0
@@ -317,6 +322,48 @@ from `x_range[0]` to `x_range[1]` through `(axis_y, axis_z)`.
   "inboard_gap_at_floor": 0.0
 }
 ```
+
+The example numbers above (`lean_deg = 30`, motor `axis = "Y"`) are illustrative of the mechanism
+only. Section 4.6a carries the current committed values and what changed.
+
+### 4.6a Owner corrections, 2026-09-17
+
+Two corrections came out of a live session with the owner, checking placement against a
+standalone three.js viewer (`docs/thrifty/2026-09-15-battery-boxes/artefacts/box-check-viewer.html`,
+not a plan deliverable) because flat 2D renders proved unreliable for judging real clearance and
+orientation. Full detail: `docs/thrifty/2026-09-15-battery-boxes/findings/WP-04.md`.
+
+**Motor axis.** `[motor].axis` was `"Y"` (cross-vehicle) on the assumption of a cross-shaft
+layout. The owner's notebook sketch and the LT-A400F propeller-shaft/differential reference
+photos show the motor mounted in-line, fore-and-aft, parallel to the prop-shaft stack and
+connected to it by a toothed belt (chain was a fallback note, not the design). Corrected to
+`"X"`. This affects every clearance figure computed against the motor placeholder before
+2026-09-17 in this document and in `findings/WP-04.md`.
+
+**Box rotation reference.** The `[placement]` transform in section 4.6 rotates each box about
+its **local origin** (the floor's inside-face centre). The owner's actual design reference is
+different: each box pivots about its own **inner-most edge** — the longest edge (parallel to
+X), the one with the 2nd-highest Z among the four box-local corner pairs (local Y =
+`-outer_y/2`, Z = `-sheet`; floor side, inboard side). That edge's vehicle position is the
+thing that should stay fixed as the lean angle changes, not the local origin.
+
+`assembly.py` was not changed to implement this — a real hinge-pivot transform is a section 4.6
+code change, not a parameter change, and is out of scope for whichever WP does it next. Instead,
+the current `[placement]` x/y/z/lean_deg are **back-solved equivalents**: values that, through
+the existing origin-based transform, put that inner-most edge at exactly the hinge position the
+owner specified (vehicle Y = ±15 mm — a 30 mm gap — Z = 591.57 mm). This was verified against
+`assembly.py`'s own `inboard_gap_at_floor` output (0.000 mm from 30.000 mm) after regenerating
+`assembly.step` and `placement.json` through the real pipeline, not just asserted.
+
+**Consequence for future changes.** Because these are back-solved equivalents, changing the gap
+or the lean angle independently means re-solving x/y/z together (as `findings/WP-04.md` row 4
+describes), not editing one field. If the hinge position needs to move independently of tilt
+routinely, implement the hinge-pivot transform for real rather than keep back-solving.
+
+**Not done.** The placement above is not verified clear of the frame - the owner deprioritised
+collision-sweep precision in favour of getting real component CAD (motor, intermediate drive)
+into the model. WP-04's formal sweep (section 4.7, items 5-11) has not run against this
+placement. See `status/WP-04.md`.
 
 `inboard_gap_at_floor` is the Y distance between the two boxes' inboard-bottom outer edges: the
 channel width at its narrowest.

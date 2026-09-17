@@ -45,17 +45,38 @@ cable_exit_d = [20.0, 20.0, 25.0]   # two power glands and one sense gland, diam
 cable_exit_z = 160.0          # gland centre height above the floor
 
 [placement]                   # left box; the right box is its mirror through Y = 0. Section 4.6
-x = 700.0                     # box-local origin X, datum frame
-y = 300.0                     # box-local origin Y, positive = left
-z = 350.0                     # box-local origin Z
-lean_deg = 30.0               # lid normal tilts outboard by this angle; stack axis descends outboard
+x = 743.2                     # OWNER 2026-09-17 final: box-local origin X (equivalent origin-based
+                               # value - see below)
+y = 39.2643                   # OWNER 2026-09-17 final: equivalent origin-based y reproducing the
+                               # owner's actual reference: each box pivots about its own inner-most
+                               # edge (the longest edge, parallel to X, 2nd-highest Z: local -Y/-Z,
+                               # floor side, inboard side; LHS anticlockwise, RHS clockwise mirrored).
+                               # That hinge edge sits at vehicle Y=+-15 (30 mm gap, static - unaffected
+                               # by later x/lean changes), Z=591.57. x=743.2, y=39.2643, z=440.4765
+                               # with the rotation below reproduce that hinge position exactly via
+                               # assembly.py's existing origin-based transform (verified 2026-09-17).
+                               # IMPORTANT: assembly.py itself still only implements origin-based
+                               # rotation - these are back-solved equivalents, not a hinge-rotation
+                               # code change. If the hinge position needs to move independently of the
+                               # box's tilt in future, assembly.py needs a real hinge-pivot transform
+                               # (see findings/WP-04.md).
+z = 440.4765                  # OWNER 2026-09-17 final: see y comment - solved together with x, y for
+                               # the same hinge position. NOT verified against the real scan at this
+                               # exact value (collision checking deprioritised by the owner in favour
+                               # of real component CAD - see findings/WP-04.md).
+lean_deg = 82.0                # OWNER 2026-09-17 final: largest face (lid/floor, 460x300) 8 deg off
+                               # vertical (lid-normal 82 deg off vertical in this parameterisation)
 clearance_min = 10.0          # a placement passes when no frame point is inside and this is clear
 
 [sweep]                       # WP-04 grid, applied to the left box; the right box mirrors it
-x = [650.0, 700.0, 750.0]
-y_range = [200.0, 400.0, 25.0]      # start, stop inclusive, step
-z_range = [300.0, 450.0, 25.0]
-lean_range = [0.0, 40.0, 5.0]
+                               # OWNER 2026-09-17: re-centred on the actual placement (x=743.2,
+                               # y=39.2643, z=440.4765, lean_deg=82) - the old grid (lean 0-40,
+                               # y 200-400) predates the owner's hinge-rotation correction and does
+                               # not bracket the current design point at all.
+x = [693.2, 743.2, 793.2]
+y_range = [-50.0, 100.0, 25.0]      # start, stop inclusive, step
+z_range = [390.0, 490.0, 25.0]
+lean_range = [72.0, 92.0, 5.0]
 samples = 8000                # surface samples per placement for the distance query
 
 [motor]                       # SIAECOSYS QSJ138D-90-4000W outline drawing, owner supplied 2026-09-15
@@ -63,8 +84,12 @@ length = 258.8                # overall along the axis, drawing "258.8 +/- 2"
 housing_d = 210.0             # OWNER: tape-measure the finned housing; not dimensioned on the drawing
 spigot_d = 120.0              # output-end spigot, drawing "120 -0.2"
 bolt_circle_d = 131.0         # drawing "131 +/- 0.2", six M8
-axis = "Y"                    # cross-shaft layout; motor axis across the vehicle
-centre = [320.0, 0.0, 450.0]  # placeholder: behind the boxes; WP-04 reports its own clearance
+axis = "X"                    # OWNER correction 2026-09-16: in-line with the prop-shaft stack (motor
+                               # notebook sketch + LT-A400F prop shaft/diff refs), not cross-vehicle
+centre = [252.0, 0.0, 590.0]  # OWNER 2026-09-16: behind the boxes, clear of the rear shock; z raised
+                               # 50% of housing_d above the WP-04 clearance candidate (485) on the
+                               # owner's call - the crossmember in this pocket is being removed and
+                               # rebuilt into the motor mount, so it is not a real obstruction
 
 [keepout]                     # propeller shaft plus the 150 x 100 duct, along X on the centreline
 axis_y = 0.0
