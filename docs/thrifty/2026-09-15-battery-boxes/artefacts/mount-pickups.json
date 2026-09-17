@@ -1,0 +1,2223 @@
+[
+  {
+    "id": "engine-bay/cyl/148",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.07163202581004711,
+      -0.9934369961897456,
+      0.0891727956264936
+    ],
+    "point": [
+      517.5740683786198,
+      -148.4141841171925,
+      609.1594815855759
+    ],
+    "radius": 12.235997438420029,
+    "length": 66.1114544848878,
+    "support": 4723,
+    "rms": 0.9742446462753822,
+    "box": "right",
+    "distance": 1.149,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/plane/046",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.009284958186217997,
+      0.9999352550064661,
+      -0.006578400005618215
+    ],
+    "point": [
+      562.1013793945312,
+      95.71929931640625,
+      601.3037719726562
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2088,
+    "rms": 0.23752625686399725,
+    "box": "left",
+    "distance": 1.595,
+    "nearest_face": "inboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "tank-mounts/cyl/064",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9818851241656321,
+      -0.05220316734083169,
+      -0.18214398771803178
+    ],
+    "point": [
+      526.3622166071877,
+      105.51460787576355,
+      602.4948249672707
+    ],
+    "radius": 22.14398917014579,
+    "length": 39.10313167176392,
+    "support": 7256,
+    "rms": 0.8160599276433482,
+    "box": "left",
+    "distance": 1.779,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "duct-route/cyl/092",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.0032654578035823277,
+      0.9980083230791034,
+      0.0629978082965531
+    ],
+    "point": [
+      518.8481050331768,
+      128.95203105595155,
+      610.438876636491
+    ],
+    "radius": 13.043971376410603,
+    "length": 88.81344947806788,
+    "support": 29471,
+    "rms": 0.9435544933853911,
+    "box": "left",
+    "distance": 2.826,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/plane/014",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.0056344879472848474,
+      0.9999701567341365,
+      0.005285658585148331
+    ],
+    "point": [
+      560.65869140625,
+      99.09085083007812,
+      599.86181640625
+    ],
+    "radius": null,
+    "length": null,
+    "support": 3225,
+    "rms": 0.14452906265106638,
+    "box": "left",
+    "distance": 3.492,
+    "nearest_face": "inboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/031",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.0020857237347842728,
+      -0.99999289287464,
+      -0.003140693667158388
+    ],
+    "point": [
+      556.4764404296875,
+      -80.49996185302734,
+      605.4786987304688
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2490,
+    "rms": 0.25478487555225554,
+    "box": "right",
+    "distance": 4.658,
+    "nearest_face": "inboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/053",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.0032448866125379186,
+      0.999994081281239,
+      -0.0011437278358597824
+    ],
+    "point": [
+      555.40380859375,
+      -77.10313415527344,
+      606.2028198242188
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1632,
+    "rms": 0.1738326864187074,
+    "box": "right",
+    "distance": 5.847,
+    "nearest_face": "inboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/015",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.011058377998074157,
+      0.9881193059668285,
+      -0.1532904088704991
+    ],
+    "point": [
+      982.0860137939453,
+      63.629398345947266,
+      321.74249267578125
+    ],
+    "radius": null,
+    "length": null,
+    "support": 4148,
+    "rms": 0.47503288689165263,
+    "box": "left",
+    "distance": 5.886,
+    "nearest_face": "rear",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/032",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.011397391513567882,
+      0.9997713516136894,
+      -0.01809264931465851
+    ],
+    "point": [
+      854.2813720703125,
+      -83.81886291503906,
+      299.0185852050781
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1630,
+    "rms": 0.18783476463454224,
+    "box": "right",
+    "distance": 6.718,
+    "nearest_face": "outboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/064",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.02421304957231385,
+      0.9997066587360287,
+      -0.0005698326546430244
+    ],
+    "point": [
+      516.9294357299805,
+      -85.15886688232422,
+      304.6732177734375
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1560,
+    "rms": 0.18777088186830573,
+    "box": "right",
+    "distance": 6.729,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/037",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.010880963023720257,
+      0.9999347702235398,
+      0.0034727426730338713
+    ],
+    "point": [
+      517.1659469604492,
+      81.69438934326172,
+      302.65582275390625
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1662,
+    "rms": 0.16321051683743706,
+    "box": "left",
+    "distance": 6.966,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/010",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.019128313428418416,
+      -0.040119344846093516,
+      0.9990117846124262
+    ],
+    "point": [
+      643.4442749023438,
+      -200.21701049804688,
+      299.8159484863281
+    ],
+    "radius": null,
+    "length": null,
+    "support": 5446,
+    "rms": 0.27328193255109695,
+    "box": "right",
+    "distance": 8.692,
+    "nearest_face": "outboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/011",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.007123639655616021,
+      0.025448793886079422,
+      0.9996507453344897
+    ],
+    "point": [
+      644.8175659179688,
+      199.34884643554688,
+      299.33648681640625
+    ],
+    "radius": null,
+    "length": null,
+    "support": 5085,
+    "rms": 0.18404758896272214,
+    "box": "left",
+    "distance": 9.046,
+    "nearest_face": "outboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "duct-route/cyl/159",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.08937656049084917,
+      -0.9948023529517345,
+      -0.04878636076321463
+    ],
+    "point": [
+      522.1723732350679,
+      79.65860885598461,
+      611.7247709575488
+    ],
+    "radius": 10.438395376422536,
+    "length": 41.62736636426736,
+    "support": 3398,
+    "rms": 0.555684540406925,
+    "box": "left",
+    "distance": 10.96,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "tank-mounts/cyl/046",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.6136858021673094,
+      0.3389281981281423,
+      0.7131040686546928
+    ],
+    "point": [
+      523.1938037975128,
+      -181.3132854753398,
+      627.3311546993586
+    ],
+    "radius": 12.964057524857592,
+    "length": 40.176254689348184,
+    "support": 13836,
+    "rms": 0.4149004795045699,
+    "box": "right",
+    "distance": 12.267,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/cyl/107",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.6549724100016442,
+      -0.17020885125619986,
+      0.7362337190666312
+    ],
+    "point": [
+      522.726437441169,
+      184.24083823480498,
+      628.5130393855576
+    ],
+    "radius": 12.988347978709756,
+    "length": 62.66709777487398,
+    "support": 24932,
+    "rms": 0.7685185670409976,
+    "box": "left",
+    "distance": 13.03,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/cyl/028",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.006014661155704606,
+      -0.9999527750380689,
+      -0.007633580080622759
+    ],
+    "point": [
+      560.6509535486576,
+      -199.01505453790764,
+      295.22478984460173
+    ],
+    "radius": 13.510408425828942,
+    "length": 64.69516781626554,
+    "support": 26024,
+    "rms": 0.28874486311936115,
+    "box": "right",
+    "distance": 13.071,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "rear-flange/cyl/015",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.01388441662368419,
+      0.9999030887742085,
+      -0.0010178579553574703
+    ],
+    "point": [
+      560.6407027298619,
+      -198.82783931507828,
+      295.1646347047905
+    ],
+    "radius": 13.585700101696045,
+    "length": 65.36361671611593,
+    "support": 25956,
+    "rms": 0.32638029009982816,
+    "box": "right",
+    "distance": 13.105,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "duct-route/cyl/071",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.013612268628300261,
+      -0.999001710052572,
+      0.04254749645781554
+    ],
+    "point": [
+      508.43418460346516,
+      -129.67997109758514,
+      285.1944016239485
+    ],
+    "radius": 12.987248100150191,
+    "length": 108.4788558415369,
+    "support": 39433,
+    "rms": 0.8000265644684827,
+    "box": "right",
+    "distance": 13.471,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "engine-bay/cyl/016",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9993890183375591,
+      -0.0017179470511796482,
+      0.034909005775291005
+    ],
+    "point": [
+      977.9697541950015,
+      -70.59629694912873,
+      273.7967500197623
+    ],
+    "radius": 14.663222060940623,
+    "length": 224.2273724352425,
+    "support": 69197,
+    "rms": 0.30281004696887437,
+    "box": "right",
+    "distance": 16.513,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "duct-route/cyl/011",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9993159463799866,
+      0.00973129894297637,
+      0.03567830056987587
+    ],
+    "point": [
+      971.3025829651062,
+      -70.71630320917896,
+      273.63960748429463
+    ],
+    "radius": 14.750957393959643,
+    "length": 258.2096609234721,
+    "support": 72681,
+    "rms": 0.5705331575212165,
+    "box": "right",
+    "distance": 16.591,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "tank-mounts/cyl/033",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.6394395898881549,
+      0.23430950919015217,
+      -0.7322677548456838
+    ],
+    "point": [
+      526.8651769877895,
+      183.40603575356522,
+      633.1405937404633
+    ],
+    "radius": 12.86805881240435,
+    "length": 53.809203593798216,
+    "support": 23476,
+    "rms": 0.6070847256292107,
+    "box": "left",
+    "distance": 17.728,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "duct-route/cyl/070",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9999670896196428,
+      -0.006498257232144217,
+      0.004857193692473099
+    ],
+    "point": [
+      908.6952657788405,
+      70.42188095459571,
+      272.03239133838775
+    ],
+    "radius": 15.491976539930647,
+    "length": 76.83173549690244,
+    "support": 39185,
+    "rms": 0.6917247512670035,
+    "box": "left",
+    "distance": 18.141,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "engine-bay/plane/013",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.6793996990111438,
+      0.0023349321197763118,
+      -0.733764674180737
+    ],
+    "point": [
+      517.965950012207,
+      29.50153350830078,
+      612.5576171875
+    ],
+    "radius": null,
+    "length": null,
+    "support": 3426,
+    "rms": 0.22685007822220912,
+    "box": "left",
+    "distance": 18.765,
+    "nearest_face": "inboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/cyl/050",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9988166711784562,
+      0.04863368464475032,
+      0.00014864004439058345
+    ],
+    "point": [
+      901.1957813393324,
+      -71.29867864772982,
+      270.82755543391016
+    ],
+    "radius": 14.828440668107898,
+    "length": 52.74883893492864,
+    "support": 20271,
+    "rms": 0.5886089301099824,
+    "box": "right",
+    "distance": 19.456,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "rear-flange/cyl/035",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.8830830108773278,
+      0.02813212003004334,
+      -0.46837269318615127
+    ],
+    "point": [
+      495.4254403313518,
+      -188.99845834865806,
+      293.6069944545979
+    ],
+    "radius": 14.91544854612505,
+    "length": 38.43225786993067,
+    "support": 16052,
+    "rms": 0.887534371283387,
+    "box": "right",
+    "distance": 19.865,
+    "nearest_face": "front"
+  },
+  {
+    "id": "engine-bay/cyl/038",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.92231042640549,
+      0.3811879562438588,
+      -0.0635548531455574
+    ],
+    "point": [
+      859.6035199084309,
+      -131.3475089974428,
+      276.7872207438698
+    ],
+    "radius": 15.108545809091023,
+    "length": 132.54899894085162,
+    "support": 49672,
+    "rms": 0.8588255673858896,
+    "box": "right",
+    "distance": 21.912,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "duct-route/cyl/009",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9205195957531191,
+      -0.38828972538663314,
+      -0.043298533389563354
+    ],
+    "point": [
+      824.9629999987816,
+      144.85036152708213,
+      278.50485707490395
+    ],
+    "radius": 14.563359483798823,
+    "length": 217.4852711231186,
+    "support": 105370,
+    "rms": 0.9631609702504337,
+    "box": "left",
+    "distance": 22.09,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "duct-route/cyl/056",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.870836281140962,
+      -0.4480646360139939,
+      -0.202193603761906
+    ],
+    "point": [
+      902.0645157693481,
+      110.04538314877333,
+      273.4270867228539
+    ],
+    "radius": 14.532915738795847,
+    "length": 57.697382201352156,
+    "support": 16570,
+    "rms": 0.7193621433461168,
+    "box": "left",
+    "distance": 22.275,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "duct-route/cyl/051",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9185409171373814,
+      -0.3936523231682284,
+      -0.03633774908652272
+    ],
+    "point": [
+      823.7021908450513,
+      145.41047531458085,
+      278.3257263906029
+    ],
+    "radius": 14.557164048957285,
+    "length": 158.1845588827143,
+    "support": 68784,
+    "rms": 0.4338921574383083,
+    "box": "left",
+    "distance": 22.345,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "engine-bay/cyl/085",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.920549327914403,
+      0.3836703424477054,
+      0.07338939434551456
+    ],
+    "point": [
+      976.3632900366808,
+      -88.24225133986019,
+      269.71255962883055
+    ],
+    "radius": 11.393737397493695,
+    "length": 66.41926642276721,
+    "support": 12657,
+    "rms": 0.9775571901386568,
+    "box": "right",
+    "distance": 22.919,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "duct-route/cyl/094",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9113848293916689,
+      -0.33781726329780476,
+      -0.23506847804990894
+    ],
+    "point": [
+      903.9534769306314,
+      111.5362213218134,
+      272.59906071148157
+    ],
+    "radius": 14.8132299687708,
+    "length": 50.35451374496834,
+    "support": 17668,
+    "rms": 0.9032141333342376,
+    "box": "left",
+    "distance": 23.302,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "engine-bay/plane/030",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.4408916729918434,
+      0.8855154363648746,
+      -0.14655014379378523
+    ],
+    "point": [
+      646.687255859375,
+      -279.74481201171875,
+      359.8931884765625
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2601,
+    "rms": 0.5716917723997395,
+    "box": "right",
+    "distance": 23.925,
+    "nearest_face": "lid",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "duct-route/cyl/044",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9182205567644633,
+      0.32589179268377266,
+      -0.22509008995625723
+    ],
+    "point": [
+      900.8829477239273,
+      -114.77963989774764,
+      272.04006740028603
+    ],
+    "radius": 15.25826444260211,
+    "length": 55.47587010828251,
+    "support": 19682,
+    "rms": 0.7214317372696248,
+    "box": "right",
+    "distance": 24.307,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "duct-route/cyl/022",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9998647987066775,
+      0.0003896527971883768,
+      -0.016438749281890944
+    ],
+    "point": [
+      627.2151586546162,
+      -188.7849737076434,
+      282.3422539681652
+    ],
+    "radius": 13.600716579863715,
+    "length": 207.2756135766059,
+    "support": 19068,
+    "rms": 0.4860492406965156,
+    "box": "right",
+    "distance": 24.405,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "engine-bay/cyl/120",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9281326369184659,
+      0.3718872919439137,
+      -0.01642103460192515
+    ],
+    "point": [
+      771.3873439886382,
+      -169.6241057073997,
+      279.3700247153263
+    ],
+    "radius": 14.49617646100197,
+    "length": 97.07521851783972,
+    "support": 46304,
+    "rms": 0.40861189335393366,
+    "box": "right",
+    "distance": 24.681,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "tank-mounts/cyl/076",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9807040455341521,
+      0.016254326902790578,
+      0.19482138468321447
+    ],
+    "point": [
+      554.8842385787507,
+      -74.0453309451546,
+      624.9050486313537
+    ],
+    "radius": 7.112898011323159,
+    "length": 56.40818053036091,
+    "support": 6719,
+    "rms": 0.7610338480173929,
+    "box": "right",
+    "distance": 24.793,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/cyl/041",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.6136422276198998,
+      -0.36523631370376375,
+      0.700032607550372
+    ],
+    "point": [
+      533.3488960674903,
+      179.27149903138906,
+      639.9993122942467
+    ],
+    "radius": 13.54459925971654,
+    "length": 78.24304289643871,
+    "support": 26198,
+    "rms": 0.980010235733338,
+    "box": "left",
+    "distance": 25.096,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "duct-route/cyl/043",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9322373093384753,
+      0.3616952649377939,
+      -0.010494493743828453
+    ],
+    "point": [
+      760.2835587692622,
+      -174.12165726942317,
+      279.5438534616922
+    ],
+    "radius": 14.437170370364614,
+    "length": 86.69624104611233,
+    "support": 14177,
+    "rms": 0.4838398216544978,
+    "box": "right",
+    "distance": 25.135,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "duct-route/cyl/027",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9999273119811701,
+      -0.005915016772554731,
+      -0.010506347162180452
+    ],
+    "point": [
+      629.8372765517204,
+      187.06875182041566,
+      281.3333158435596
+    ],
+    "radius": 14.317091557283922,
+    "length": 204.61744341482805,
+    "support": 42893,
+    "rms": 0.49356880418155774,
+    "box": "left",
+    "distance": 25.165,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "duct-route/cyl/059",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9999442472341725,
+      0.0066346298341184475,
+      -0.008214871286172305
+    ],
+    "point": [
+      610.7017930199958,
+      187.65440617006934,
+      281.36371236095397
+    ],
+    "radius": 14.888325744659578,
+    "length": 175.8399559704025,
+    "support": 33489,
+    "rms": 0.12232044546320692,
+    "box": "left",
+    "distance": 25.216,
+    "nearest_face": "outboard"
+  },
+  {
+    "id": "duct-route/cyl/032",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.6348786713521302,
+      -0.0011404543674884415,
+      0.7726110095164251
+    ],
+    "point": [
+      484.1833339333593,
+      184.55900070248953,
+      585.1980779163458
+    ],
+    "radius": 10.88430579363173,
+    "length": 127.9758074346282,
+    "support": 6945,
+    "rms": 0.7536164983370014,
+    "box": "left",
+    "distance": 26.017,
+    "nearest_face": "front"
+  },
+  {
+    "id": "duct-route/cyl/103",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.627032821757604,
+      0.2872709068714189,
+      -0.7240892669443246
+    ],
+    "point": [
+      534.4933654333266,
+      180.4291292344984,
+      641.8215435043486
+    ],
+    "radius": 12.581102713015015,
+    "length": 35.0244495797522,
+    "support": 4494,
+    "rms": 0.39991490936563984,
+    "box": "left",
+    "distance": 26.739,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/plane/035",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.014718223335371292,
+      0.9483021960281731,
+      0.3170273157158457
+    ],
+    "point": [
+      996.9846954345703,
+      56.3245849609375,
+      271.7493591308594
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1791,
+    "rms": 0.2695022615531636,
+    "box": "left",
+    "distance": 26.754,
+    "nearest_face": "rear",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/039",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.31812476484388874,
+      -0.9475954543752148,
+      0.02931704010385326
+    ],
+    "point": [
+      663.1909790039062,
+      -281.1789245605469,
+      372.2414855957031
+    ],
+    "radius": null,
+    "length": null,
+    "support": 3048,
+    "rms": 0.5413328121092856,
+    "box": "right",
+    "distance": 27.064,
+    "nearest_face": "lid",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/cyl/024",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9989793617245337,
+      0.002734782437907521,
+      0.045086093348843566
+    ],
+    "point": [
+      1002.6438172636754,
+      69.61482023643791,
+      276.87034701477114
+    ],
+    "radius": 14.419708205926742,
+    "length": 199.8722761312352,
+    "support": 50320,
+    "rms": 0.19960348474118367,
+    "box": "left",
+    "distance": 29.572,
+    "nearest_face": "rear"
+  },
+  {
+    "id": "engine-bay/plane/009",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.003938606826112311,
+      0.9998328340268992,
+      -0.017854729849776575
+    ],
+    "point": [
+      643.8029174804688,
+      217.30685424804688,
+      281.0875244140625
+    ],
+    "radius": null,
+    "length": null,
+    "support": 4437,
+    "rms": 0.1480605033373378,
+    "box": "left",
+    "distance": 29.617,
+    "nearest_face": "outboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/022",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.056086535168279036,
+      0.9468242044262591,
+      0.31682523019071396
+    ],
+    "point": [
+      678.5216674804688,
+      -285.1302795410156,
+      363.2706604003906
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2835,
+    "rms": 0.3592553074931617,
+    "box": "right",
+    "distance": 29.728,
+    "nearest_face": "lid",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/021",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.0026103001637393214,
+      0.99971547065143,
+      0.023709999435793386
+    ],
+    "point": [
+      642.93115234375,
+      -220.4839630126953,
+      281.14263916015625
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2775,
+    "rms": 0.21263435050782592,
+    "box": "right",
+    "distance": 30.004,
+    "nearest_face": "outboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "duct-route/cyl/042",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.6695454574995987,
+      0.03350793257089779,
+      0.742014891222863
+    ],
+    "point": [
+      479.7567104181034,
+      -187.56381727183518,
+      578.2613095460622
+    ],
+    "radius": 12.559234110549307,
+    "length": 103.67644243211953,
+    "support": 4429,
+    "rms": 0.931331645333521,
+    "box": "right",
+    "distance": 30.443,
+    "nearest_face": "front"
+  },
+  {
+    "id": "engine-bay/cyl/070",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.6156030897813165,
+      -0.40381038151461407,
+      0.6767348163296449
+    ],
+    "point": [
+      539.1674622455558,
+      177.5682834022533,
+      646.9986483203808
+    ],
+    "radius": 12.785537001967969,
+    "length": 50.654151173992574,
+    "support": 14785,
+    "rms": 0.3917916016592622,
+    "box": "left",
+    "distance": 32.264,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "tank-mounts/cyl/070",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.584153697658124,
+      -0.43741072474806636,
+      0.6836931441719395
+    ],
+    "point": [
+      540.5566318604382,
+      175.08930342049717,
+      648.8611365721091
+    ],
+    "radius": 13.300577466705938,
+    "length": 60.58073342083203,
+    "support": 15843,
+    "rms": 0.714753883240287,
+    "box": "left",
+    "distance": 34.454,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/cyl/138",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.5754209636449652,
+      0.4870748679753161,
+      0.656999838344522
+    ],
+    "point": [
+      542.0398705290964,
+      -167.18848012684523,
+      648.3805338776655
+    ],
+    "radius": 12.969974864470553,
+    "length": 77.16210023526097,
+    "support": 29500,
+    "rms": 0.38643970109046705,
+    "box": "right",
+    "distance": 35.077,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/plane/019",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.02752925229762647,
+      0.9995853965315611,
+      0.008436546021654022
+    ],
+    "point": [
+      470.690185546875,
+      -46.73945236206055,
+      586.6156005859375
+    ],
+    "radius": null,
+    "length": null,
+    "support": 4835,
+    "rms": 0.9332741051063138,
+    "box": "right",
+    "distance": 39.51,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "duct-route/cyl/102",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.5460539229385095,
+      -0.009441154182846965,
+      0.8376968293190323
+    ],
+    "point": [
+      469.87200532874704,
+      -186.3130452558376,
+      322.04482391490933
+    ],
+    "radius": 12.163430310782266,
+    "length": 63.489660999773335,
+    "support": 4810,
+    "rms": 0.8814307097993097,
+    "box": "right",
+    "distance": 40.328,
+    "nearest_face": "front"
+  },
+  {
+    "id": "duct-route/cyl/058",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.013621213219967088,
+      -0.9995447779500884,
+      0.026920241884586867
+    ],
+    "point": [
+      862.2029130733432,
+      -17.449346821306708,
+      279.37389315205127
+    ],
+    "radius": 11.78891474755976,
+    "length": 133.7750762540757,
+    "support": 25759,
+    "rms": 0.370370669457678,
+    "box": "right",
+    "distance": 41.173,
+    "nearest_face": "floor"
+  },
+  {
+    "id": "duct-route/cyl/048",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.38745312421740513,
+      -0.019612270347264985,
+      0.9216807665271083
+    ],
+    "point": [
+      463.5998961701315,
+      184.93312307784876,
+      337.42898669322346
+    ],
+    "radius": 13.663779582634154,
+    "length": 122.20822431347767,
+    "support": 6203,
+    "rms": 0.839793116282507,
+    "box": "left",
+    "distance": 46.6,
+    "nearest_face": "front"
+  },
+  {
+    "id": "engine-bay/plane/025",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.6183039021620376,
+      -0.13814500675783092,
+      0.7737029414956856
+    ],
+    "point": [
+      1024.118911743164,
+      -75.65131378173828,
+      310.44830322265625
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2476,
+    "rms": 0.3777219546255992,
+    "box": "right",
+    "distance": 47.919,
+    "nearest_face": "rear",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/016",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.6175672197472188,
+      -0.07682711813247611,
+      -0.7827568735010566
+    ],
+    "point": [
+      1024.5526123046875,
+      74.9319839477539,
+      313.4751892089844
+    ],
+    "radius": null,
+    "length": null,
+    "support": 3090,
+    "rms": 0.18385679793628232,
+    "box": "left",
+    "distance": 48.353,
+    "nearest_face": "rear",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/cyl/018",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.0025406383578853663,
+      -0.9999967286606765,
+      -0.0002963522904578797
+    ],
+    "point": [
+      861.2365021817172,
+      -8.284390553528155,
+      278.35972275500393
+    ],
+    "radius": 13.055692964893742,
+    "length": 257.00994937299475,
+    "support": 89594,
+    "rms": 0.36669900933301325,
+    "box": "right",
+    "distance": 50.344,
+    "nearest_face": "floor"
+  },
+  {
+    "id": "engine-bay/cyl/029",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.009812591815650652,
+      0.9998937822052647,
+      -0.010776704000311275
+    ],
+    "point": [
+      507.72204222157313,
+      -6.642288993075684,
+      284.2167974727201
+    ],
+    "radius": 13.12541783544471,
+    "length": 381.7061224296966,
+    "support": 89922,
+    "rms": 0.5719836290677986,
+    "box": "right",
+    "distance": 51.112,
+    "nearest_face": "floor"
+  },
+  {
+    "id": "front-flange/cyl/048",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9986473120876489,
+      -0.004711479728452546,
+      0.05178173441361991
+    ],
+    "point": [
+      1026.321854473297,
+      69.77872117357721,
+      277.7336875019551
+    ],
+    "radius": 14.719813442045496,
+    "length": 162.22257212032878,
+    "support": 68129,
+    "rms": 0.3703267525038614,
+    "box": "left",
+    "distance": 51.634,
+    "nearest_face": "rear"
+  },
+  {
+    "id": "engine-bay/cyl/013",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.0005412352136623293,
+      -0.9998665104545714,
+      0.016329982726327578
+    ],
+    "point": [
+      507.6142846779454,
+      -3.001146968400801,
+      284.46579636975105
+    ],
+    "radius": 13.226661181549858,
+    "length": 371.6027726429604,
+    "support": 131305,
+    "rms": 0.857800092238443,
+    "box": "right",
+    "distance": 54.684,
+    "nearest_face": "floor"
+  },
+  {
+    "id": "duct-route/cyl/003",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.0036878473935531577,
+      0.999991963284132,
+      -0.0015726247960459183
+    ],
+    "point": [
+      507.84434108178436,
+      -1.7645891582285167,
+      284.1609491276553
+    ],
+    "radius": 13.216668168093515,
+    "length": 357.50340206589027,
+    "support": 133590,
+    "rms": 0.7222587099776944,
+    "box": "right",
+    "distance": 55.939,
+    "nearest_face": "floor"
+  },
+  {
+    "id": "engine-bay/plane/001",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.009056759318611607,
+      0.9999552303372292,
+      -0.002740881585103641
+    ],
+    "point": [
+      453.8319396972656,
+      204.3902587890625,
+      362.3870849609375
+    ],
+    "radius": null,
+    "length": null,
+    "support": 14975,
+    "rms": 0.34489102490087403,
+    "box": "left",
+    "distance": 56.368,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/034",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.46914643308057025,
+      0.8700867160023181,
+      0.151164582373251
+    ],
+    "point": [
+      453.2832946777344,
+      200.15293884277344,
+      381.98516845703125
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2008,
+    "rms": 0.4751881822426996,
+    "box": "left",
+    "distance": 56.917,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/028",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.9995828939407655,
+      -0.025854987846350833,
+      -0.01286692443707296
+    ],
+    "point": [
+      451.3642883300781,
+      -232.33774185180664,
+      349.0565185546875
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2547,
+    "rms": 0.2445762357702553,
+    "box": "right",
+    "distance": 58.836,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/040",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.0475907788089754,
+      0.9971393376121871,
+      0.05872187972709941
+    ],
+    "point": [
+      449.7612609863281,
+      -202.71334838867188,
+      303.2185974121094
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1563,
+    "rms": 0.31071123284274554,
+    "box": "right",
+    "distance": 60.704,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/027",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.49866346887149443,
+      0.8511648864509488,
+      -0.1638690967998284
+    ],
+    "point": [
+      449.3713073730469,
+      -203.3566131591797,
+      389.339599609375
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1982,
+    "rms": 0.30162658946169607,
+    "box": "right",
+    "distance": 60.829,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/043",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.03266580699780843,
+      -0.9780436816445961,
+      -0.20582395839227755
+    ],
+    "point": [
+      1041.790512084961,
+      -65.80009365081787,
+      318.79339599609375
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2463,
+    "rms": 0.5737355690183306,
+    "box": "right",
+    "distance": 65.591,
+    "nearest_face": "rear",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/017",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.02838197403428844,
+      -0.9994984096274181,
+      -0.014049651318768485
+    ],
+    "point": [
+      603.4591674804688,
+      103.55525207519531,
+      672.8048706054688
+    ],
+    "radius": null,
+    "length": null,
+    "support": 3577,
+    "rms": 0.603774346727853,
+    "box": "left",
+    "distance": 68.12,
+    "nearest_face": "inboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/cyl/147",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.7138202236442419,
+      -0.18657485023831313,
+      0.6750188986799076
+    ],
+    "point": [
+      1033.9957731209515,
+      -8.61816529145612,
+      300.7307484564722
+    ],
+    "radius": 10.224284408445808,
+    "length": 56.08225055561474,
+    "support": 5920,
+    "rms": 0.6696647340552628,
+    "box": "right",
+    "distance": 74.366,
+    "nearest_face": "rear"
+  },
+  {
+    "id": "engine-bay/plane/007",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.009351967135667284,
+      0.9999106450918508,
+      0.009552096245966835
+    ],
+    "point": [
+      434.4913330078125,
+      -206.23223876953125,
+      368.7630310058594
+    ],
+    "radius": null,
+    "length": null,
+    "support": 6759,
+    "rms": 0.29756929981168423,
+    "box": "right",
+    "distance": 75.709,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/cyl/056",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.6441991540535773,
+      -0.05799711209423022,
+      -0.7626557446878537
+    ],
+    "point": [
+      433.8713622648524,
+      -188.67057946341257,
+      526.9542794387468
+    ],
+    "radius": 12.853926211585685,
+    "length": 79.99573693618022,
+    "support": 27356,
+    "rms": 0.9458534669518859,
+    "box": "right",
+    "distance": 76.329,
+    "nearest_face": "front"
+  },
+  {
+    "id": "rear-flange/cyl/007",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.6418005372507348,
+      0.02198915148603753,
+      0.7665562912151933
+    ],
+    "point": [
+      433.57465302712313,
+      -188.541807265177,
+      525.8884403197646
+    ],
+    "radius": 12.997695487604167,
+    "length": 79.60537317403877,
+    "support": 23854,
+    "rms": 0.5386761349355091,
+    "box": "right",
+    "distance": 76.625,
+    "nearest_face": "front"
+  },
+  {
+    "id": "rear-flange/cyl/009",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.6606238638407224,
+      -0.050415241046067996,
+      0.7490223054051338
+    ],
+    "point": [
+      432.15301676215233,
+      186.2199658311584,
+      526.6203956386584
+    ],
+    "radius": 12.956135038677735,
+    "length": 81.23662579722588,
+    "support": 27002,
+    "rms": 0.8814798963984202,
+    "box": "left",
+    "distance": 78.047,
+    "nearest_face": "front"
+  },
+  {
+    "id": "engine-bay/cyl/020",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.33182406741533094,
+      -0.0029441731869821464,
+      0.9433366949971739
+    ],
+    "point": [
+      430.5357844146727,
+      186.78626867926118,
+      428.9654239387106
+    ],
+    "radius": 15.060015820564155,
+    "length": 270.32831050316963,
+    "support": 88221,
+    "rms": 0.9888065079749135,
+    "box": "left",
+    "distance": 79.664,
+    "nearest_face": "front"
+  },
+  {
+    "id": "tank-mounts/cyl/009",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.56939046494613,
+      0.5014838333653754,
+      0.6513896401552595
+    ],
+    "point": [
+      578.7480330286393,
+      -133.8445631562102,
+      689.6796537050452
+    ],
+    "radius": 12.995310579099582,
+    "length": 233.1945052011381,
+    "support": 98132,
+    "rms": 0.8793533204746321,
+    "box": "right",
+    "distance": 80.615,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/plane/029",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.9562971520971497,
+      -0.02508971951821131,
+      0.29131814716110377
+    ],
+    "point": [
+      741.6204223632812,
+      -326.1720886230469,
+      448.83319091796875
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2106,
+    "rms": 0.1560877715086704,
+    "box": "right",
+    "distance": 82.279,
+    "nearest_face": "lid",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/054",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.3019633977877867,
+      -0.07210629745215379,
+      0.9505886535532582
+    ],
+    "point": [
+      722.8184204101562,
+      -327.71392822265625,
+      467.7835693359375
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1686,
+    "rms": 0.09482497569386426,
+    "box": "right",
+    "distance": 86.443,
+    "nearest_face": "lid",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/024",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.011901877315157842,
+      0.9999176659425488,
+      0.004796525031783357
+    ],
+    "point": [
+      422.4918518066406,
+      -147.7032012939453,
+      376.3690185546875
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2889,
+    "rms": 0.16765644255395917,
+    "box": "right",
+    "distance": 87.708,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/020",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.01683440172659087,
+      0.9998278690993045,
+      -0.007799685304647563
+    ],
+    "point": [
+      422.11737060546875,
+      145.117431640625,
+      371.8992614746094
+    ],
+    "radius": null,
+    "length": null,
+    "support": 2721,
+    "rms": 0.2837902518559843,
+    "box": "left",
+    "distance": 88.083,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/plane/036",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.005331277350157814,
+      -0.9927988960181371,
+      -0.11967426434695196
+    ],
+    "point": [
+      1065.519775390625,
+      -87.17561340332031,
+      299.5445556640625
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1817,
+    "rms": 0.33914108138594723,
+    "box": "right",
+    "distance": 89.32,
+    "nearest_face": "rear",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "duct-route/cyl/007",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.5592101640192637,
+      0.5116329337015499,
+      0.6523156702161108
+    ],
+    "point": [
+      585.8607898159931,
+      -127.45173010246666,
+      697.8859528067356
+    ],
+    "radius": 12.977054257611865,
+    "length": 208.43003365187894,
+    "support": 88571,
+    "rms": 0.8089823903300072,
+    "box": "right",
+    "distance": 89.631,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/plane/033",
+    "kind": "plane",
+    "axis_or_normal": [
+      -0.0242340423200324,
+      0.9993033782950455,
+      -0.028380791407926983
+    ],
+    "point": [
+      420.33282470703125,
+      196.7058563232422,
+      292.4206237792969
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1931,
+    "rms": 0.19897792832253472,
+    "box": "left",
+    "distance": 91.199,
+    "nearest_face": "front",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "rear-flange/cyl/014",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.313149454865844,
+      0.01332899131452503,
+      0.9496103184505538
+    ],
+    "point": [
+      418.0280944337876,
+      -189.98124412046465,
+      469.9726786484955
+    ],
+    "radius": 14.655618644802928,
+    "length": 181.23942398070483,
+    "support": 71436,
+    "rms": 0.6177398490431352,
+    "box": "right",
+    "distance": 92.172,
+    "nearest_face": "front"
+  },
+  {
+    "id": "duct-route/cyl/015",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.5376158712261764,
+      0.575230991425689,
+      -0.6165050539201915
+    ],
+    "point": [
+      588.911906810137,
+      125.89274931029455,
+      703.001357283329
+    ],
+    "radius": 13.059753678285324,
+    "length": 213.25341199126103,
+    "support": 84561,
+    "rms": 0.9083478802982063,
+    "box": "left",
+    "distance": 94.914,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/plane/061",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.2998668214989446,
+      0.9512743906984161,
+      -0.07181171885895196
+    ],
+    "point": [
+      1033.2586669921875,
+      339.1573181152344,
+      337.14947509765625
+    ],
+    "radius": null,
+    "length": null,
+    "support": 1521,
+    "rms": 0.6607784968292034,
+    "box": "left",
+    "distance": 97.933,
+    "nearest_face": "lid",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/cyl/004",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.2916022348202651,
+      0.14776210503784878,
+      0.9450579331250601
+    ],
+    "point": [
+      1078.8756502189947,
+      85.43153787174668,
+      381.30141270712267
+    ],
+    "radius": 13.005612669267366,
+    "length": 233.23748020963714,
+    "support": 99050,
+    "rms": 0.5080192678072333,
+    "box": "left",
+    "distance": 102.676,
+    "nearest_face": "rear"
+  },
+  {
+    "id": "duct-route/cyl/031",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.30291291921183744,
+      0.14502063143736876,
+      0.9419197310981811
+    ],
+    "point": [
+      1081.7145827029,
+      86.97850844963142,
+      391.463961142704
+    ],
+    "radius": 13.059369616903362,
+    "length": 221.7467373614832,
+    "support": 117657,
+    "rms": 0.8291376987171666,
+    "box": "left",
+    "distance": 105.515,
+    "nearest_face": "rear"
+  },
+  {
+    "id": "engine-bay/cyl/014",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.2816371048853927,
+      -0.13890427791450766,
+      0.9494135783360292
+    ],
+    "point": [
+      1082.5446065249935,
+      -87.42331451936428,
+      388.16829115730104
+    ],
+    "radius": 12.837386395669885,
+    "length": 217.64896691736502,
+    "support": 78150,
+    "rms": 0.21456007224516171,
+    "box": "right",
+    "distance": 106.345,
+    "nearest_face": "rear"
+  },
+  {
+    "id": "engine-bay/plane/005",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.0001712693088198793,
+      0.9991632834880927,
+      0.04089869919835377
+    ],
+    "point": [
+      439.7777404785156,
+      140.99058532714844,
+      690.33740234375
+    ],
+    "radius": null,
+    "length": null,
+    "support": 5679,
+    "rms": 0.15019427478129266,
+    "box": "left",
+    "distance": 106.784,
+    "nearest_face": "inboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "duct-route/cyl/024",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9968854052140654,
+      0.008366658296758547,
+      0.07841867060932581
+    ],
+    "point": [
+      1084.1965982024246,
+      69.73004535505892,
+      280.4176830289454
+    ],
+    "radius": 14.3855358123515,
+    "length": 128.3757786561329,
+    "support": 51173,
+    "rms": 0.423545531721099,
+    "box": "left",
+    "distance": 108.435,
+    "nearest_face": "rear"
+  },
+  {
+    "id": "rear-flange/cyl/060",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.3648117001693996,
+      -0.03339065309057232,
+      -0.9304823951616157
+    ],
+    "point": [
+      399.1026437451095,
+      -189.68064205990072,
+      527.3048874196244
+    ],
+    "radius": 14.550733498035159,
+    "length": 55.632121119648424,
+    "support": 22287,
+    "rms": 0.4796873061219149,
+    "box": "right",
+    "distance": 111.097,
+    "nearest_face": "front"
+  },
+  {
+    "id": "tank-mounts/cyl/114",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9883789184009815,
+      0.1221845011715598,
+      -0.09043263423103007
+    ],
+    "point": [
+      577.5332391412849,
+      -116.95372408008585,
+      718.9419354876408
+    ],
+    "radius": 12.926510644086871,
+    "length": 50.30387964813745,
+    "support": 25376,
+    "rms": 0.49673730830044827,
+    "box": "right",
+    "distance": 111.943,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "front-flange/cyl/010",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      -0.2821379467191982,
+      0.1334065091033867,
+      -0.9500530944899465
+    ],
+    "point": [
+      1088.9984005106996,
+      -90.66798774036174,
+      410.29123629867206
+    ],
+    "radius": 12.821547275953721,
+    "length": 254.94181133238027,
+    "support": 107573,
+    "rms": 0.3165261396125698,
+    "box": "right",
+    "distance": 112.798,
+    "nearest_face": "rear"
+  },
+  {
+    "id": "rear-flange/cyl/069",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.34426263958234327,
+      0.050109153479453106,
+      -0.9375352301249112
+    ],
+    "point": [
+      397.2588921873385,
+      187.53363917461544,
+      528.7551298189248
+    ],
+    "radius": 14.394127340758565,
+    "length": 55.903452392616856,
+    "support": 18714,
+    "rms": 0.5056460191951972,
+    "box": "left",
+    "distance": 112.941,
+    "nearest_face": "front"
+  },
+  {
+    "id": "engine-bay/cyl/035",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9861915609425939,
+      0.10333451768336788,
+      -0.12941476956188608
+    ],
+    "point": [
+      557.1309871052398,
+      -119.17314858790725,
+      721.7591431554481
+    ],
+    "radius": 12.8896669978319,
+    "length": 91.46148779665862,
+    "support": 46128,
+    "rms": 0.2405726762299302,
+    "box": "right",
+    "distance": 114.424,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "tank-mounts/cyl/043",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9830239745690651,
+      -0.10617539059987632,
+      -0.1496350622461255
+    ],
+    "point": [
+      556.0154921540949,
+      119.97181296788403,
+      722.9450052211714
+    ],
+    "radius": 12.773978148846634,
+    "length": 77.94924990593594,
+    "support": 42661,
+    "rms": 0.31559991899937756,
+    "box": "left",
+    "distance": 115.487,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "engine-bay/plane/002",
+    "kind": "plane",
+    "axis_or_normal": [
+      0.004037004669994559,
+      0.9989018915005174,
+      0.04667669386303004
+    ],
+    "point": [
+      442.8594970703125,
+      142.60397338867188,
+      704.6264038085938
+    ],
+    "radius": null,
+    "length": null,
+    "support": 13127,
+    "rms": 0.3825139659310028,
+    "box": "left",
+    "distance": 115.792,
+    "nearest_face": "inboard",
+    "note": "calliper before drilling"
+  },
+  {
+    "id": "engine-bay/cyl/072",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9847493809499234,
+      -0.10728359389178052,
+      -0.13696308699940468
+    ],
+    "point": [
+      553.7673920779754,
+      119.75506183763571,
+      723.2421591380348
+    ],
+    "radius": 12.989781524830358,
+    "length": 95.94590757272957,
+    "support": 40069,
+    "rms": 0.44556540899741465,
+    "box": "left",
+    "distance": 115.812,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "duct-route/cyl/008",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9848467650982276,
+      0.10848574700978812,
+      -0.13530591994175648
+    ],
+    "point": [
+      535.0511915396116,
+      -121.35741380957742,
+      725.0139633880285
+    ],
+    "radius": 12.820972175490933,
+    "length": 167.42707492084412,
+    "support": 72471,
+    "rms": 0.43594227489136694,
+    "box": "right",
+    "distance": 117.343,
+    "nearest_face": "inboard"
+  },
+  {
+    "id": "duct-route/cyl/023",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9953417501712045,
+      0.0029606775289653534,
+      0.09636407398347732
+    ],
+    "point": [
+      1093.9156011205541,
+      -70.63212758572051,
+      278.4152928588319
+    ],
+    "radius": 14.673690344465623,
+    "length": 121.79420284210457,
+    "support": 33475,
+    "rms": 0.784832316159047,
+    "box": "right",
+    "distance": 118.311,
+    "nearest_face": "rear"
+  },
+  {
+    "id": "duct-route/cyl/006",
+    "kind": "cylinder",
+    "axis_or_normal": [
+      0.9852407270669664,
+      -0.09576847282621759,
+      -0.14187709237607624
+    ],
+    "point": [
+      524.8125093598876,
+      122.61299604806631,
+      727.3898788030054
+    ],
+    "radius": 12.89890867771141,
+    "length": 151.86535268499136,
+    "support": 82146,
+    "rms": 0.364821166667519,
+    "box": "left",
+    "distance": 119.521,
+    "nearest_face": "inboard"
+  }
+]
