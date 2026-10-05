@@ -24,8 +24,9 @@ This plan delivers the parametric CAD for the battery boxes in `cad/` and the pl
 against the scanned frame. Everything is driven from one parameter file, `cad/params.toml`
 (section 4.2), so that when the owner measures the inter-cell pad, tape-measures the motor, or
 Sam scans the plastics, the whole chain re-runs from the new numbers with no redesign. The output
-for the fabricator is STEP; the output for the owner is a self-contained HTML viewer and a
-handover document.
+for the fabricator is STEP, with every body named and coloured so that Fusion and SolidWorks list
+the parts by name; the output for the owner is a self-contained HTML viewer, a handover document,
+and a Fusion import check that proves the datum origin and axes arrive where the CAD put them.
 
 **How to use this document.** Each work package is standalone. Open a new session, set the model and
 effort the WP names, paste its starter prompt verbatim. The prompt points back here for the schema
@@ -41,13 +42,13 @@ session got, and carries on. There is nothing to reconstruct and nothing to deci
 
 | | |
 |---|---|
-| **In scope** | Six scripts under `cad/` driven by `cad/params.toml`: cell and block, enclosure, vehicle assembly, clearance sweep, mount pickups, viewer and handover. STEP for one cell, the 26-cell block, one enclosure with and without cells, and the two-box vehicle assembly with a motor placeholder. A clearance sweep of the box against the datum-aligned frame mesh over lean, lateral offset, height and X station, with section renders. A table of frame primitives within reach of the chosen placement, as mount pickups. One HTML viewer and one HTML handover document for the fabricator. |
-| **Out of scope** | Busbars, BMS leads, insulating covers and their routing — represented only by the headroom parameter. Bracket design — Sam's, from the pickup table. The central contactor and paralleling box, the switchgear box, the controller box, the intermediate drive. Plastics, foot boards, tank and seat base: not in the scan, so not in the sweep (section 9, owner action 5). Any Fusion work. Any edit under `pipeline/` or `docs/thrifty/2026-09-14-scan-pipeline/`. |
+| **In scope** | Seven scripts under `cad/` driven by `cad/params.toml`: cell and block, enclosure, vehicle assembly, clearance sweep, mount pickups, viewer and handover, and the Fusion import pack. STEP for one cell, the 26-cell block, one enclosure with and without cells, and the two-box vehicle assembly with a motor placeholder, every body named and coloured (section 4.10), plus a datum marker STEP and a Fusion import workflow document (section 4.11). A clearance sweep of the box against the datum-aligned frame mesh over lean, lateral offset, height and X station, with section renders. A table of frame primitives within reach of the chosen placement, as mount pickups. One HTML viewer and one HTML handover document for the fabricator. |
+| **Out of scope** | Busbars, BMS leads, insulating covers and their routing — represented only by the headroom parameter. Bracket design — Sam's, from the pickup table. The central contactor and paralleling box, the switchgear box, the controller box, the intermediate drive. Plastics, foot boards, tank and seat base: not in the scan, so not in the sweep (section 9, owner action 5). Modelling inside Fusion: this plan delivers files that import into Fusion and a procedure to prove they landed correctly, and builds nothing in Fusion. Any edit under `pipeline/` or `docs/thrifty/2026-09-14-scan-pipeline/`. |
 | **The frame is the only obstacle in this plan** | The scan is the stripped rolling chassis. The sweep measures clearance to the frame, the placeholder motor and the propeller-shaft keep-out. It says nothing about the plastics, and the report must say so in its first line. When the plastics are scanned, the same sweep re-runs with a second obstacle mesh. |
 | **The chamfer is off by default** | The front column holds eight cells; the empty ninth position is the fuse bay. A chamfer on the front top edge is a parameter (`chamfer_front_top`) defaulting to 0. WP-04 reports whether a non-zero value would buy clearance. It is fabricated only if it does. |
 | **Placement is a parameter set, not a decision** | Section 4.6 defines the box-local frame and the transform. The defaults in `[placement]` are a feasible point from today's sweep (section 5.5). The owner replaces them after WP-04 and before WP-05 (section 9). |
-| **build123d, not Fusion** | STEP is what Sam's SolidWorks and Fusion both read. build123d 0.11.1 in `.venv-cad` builds, exports and re-imports every solid in this plan in under a second each (section 5.2), and FreeCAD 1.1.3 re-imports the STEP with identical solid count and volume (section 5.3). That re-import is the lossless read path every WP verifies against. |
-| **Derived data is local and git-ignored** | Meshes and STEP files over 1 MB live under `data/cad/`, regenerable from `params.toml`. Committed artefacts are small: STEP under 1 MB, JSON, Markdown, PNG renders, and the two HTML files, the viewer capped at 8 MB. |
+| **build123d, not Fusion** | STEP is what Sam's SolidWorks and Fusion both read. build123d 0.11.1 in `.venv-cad` builds, exports and re-imports every solid in this plan in under a second each (section 5.2), and FreeCAD 1.1.3 re-imports the STEP with identical solid count and volume (section 5.3). That re-import is the lossless read path every WP verifies against. build123d remains the master; Fusion is where Sam designs brackets against the imported geometry, and a placement change is made in `params.toml` and regenerated, never edited in Fusion. |
+| **Derived data is local and git-ignored** | Meshes and STEP files over 1.5 MB live under `data/cad/`, regenerable from `params.toml`. Committed artefacts are small: STEP under 1.5 MB, JSON, Markdown, PNG renders, and the HTML files, the viewer capped at 8 MB. |
 
 ---
 
@@ -71,6 +72,11 @@ When this plan is finished:
   the motor and the keep-out with per-body toggles and a section plane.
 - `artefacts/sam-battery-boxes.html` is the handover: what the boxes are, the parameter table,
   the placement, the clearance result, the pickups, and the open items.
+- Every STEP file carries a name and a colour on every body (section 4.10), so an importer lists
+  `box_left`, `motor` and `lid` rather than `COMPOUND`.
+- `artefacts/datum-marker.step` and `artefacts/fusion-import.html` let the owner import the CAD
+  into Fusion and prove, in under a minute, that the origin, the axis directions and the units
+  arrived unchanged (section 4.11).
 
 **Measured baseline, 2026-09-15:**
 
@@ -100,6 +106,7 @@ cad/
   clearance.py              WP-04: placement evaluation, sweep, section renders
   mounts.py                 WP-05: frame primitives within reach of the placed box
   viewer.py                 WP-06: builds artefacts/viewer.html
+  fusion_pack.py            WP-07: datum-marker.step and fusion-import.html
 data/cad/                   git-ignored (data/ is already in .gitignore)
   assembly-full.step        WP-03: the assembly with all 52 cells
 docs/thrifty/2026-09-15-battery-boxes/artefacts/
@@ -120,10 +127,12 @@ docs/thrifty/2026-09-15-battery-boxes/artefacts/
   mounts-report.md          WP-05
   viewer.html               WP-06
   sam-battery-boxes.html    WP-06
+  datum-marker.step         WP-07
+  fusion-import.html        WP-07
 ```
 
-Every script is run from the repo root. `cell.py`, `enclosure.py`, `assembly.py` and `viewer.py`
-run under `.venv-cad`; `clearance.py` and `mounts.py` run under `.venv-mesh`. Every script resolves
+Every script is run from the repo root. `cell.py`, `enclosure.py`, `assembly.py`, `viewer.py` and
+`fusion_pack.py` run under `.venv-cad`; `clearance.py` and `mounts.py` run under `.venv-mesh`. Every script resolves
 the repo root with `git rev-parse --show-toplevel`, loads `cad/params.toml` with the standard-library
 `tomllib`, writes nothing outside `data/cad/` and
 `docs/thrifty/2026-09-15-battery-boxes/artefacts/`, and refuses to run if an input it names is
@@ -441,6 +450,97 @@ inline, the pickup table, links to the STEP files by relative path, and the open
 housing diameter, plastics scan, sheet thickness, compression wall, fuse envelope, keep-out). No
 narrative about how the document was produced. Australian English.
 
+### 4.10 Names and colours in every STEP file — `cad/common.py` and the three export scripts
+
+Every body that goes into a STEP file has a `label` and a `color` (build123d attributes, set
+before the body is placed in a `Compound`; section 5.9 shows both survive export and re-import).
+`cad/common.py` gains one dictionary, `COLOURS`, mapping a colour name to `(r, g, b, alpha)` with
+each channel 0 to 1; the three scripts read it and nothing else supplies colours. Geometry,
+solid order, volumes and file names do not change.
+
+| Colour name | RGB 0-1 | Alpha | Used by |
+|---|---|---|---|
+| `cell` | 0.31, 0.62, 0.42 | 1.0 | every cell |
+| `shell` | 0.169, 0.424, 0.561 | 1.0 | `enclosure_body`, `box_left`, `box_right` |
+| `lid` | 0.357, 0.608, 0.741 | 1.0 | `lid` |
+| `plate` | 0.541, 0.604, 0.639 | 1.0 | `end_plate`, `partition`, `compression_plate` |
+| `fuse` | 0.878, 0.690, 0.188 | 1.0 | `fuse_0`, `fuse_1` |
+| `motor` | 0.851, 0.510, 0.169 | 1.0 | `motor` |
+| `keepout` | 0.753, 0.224, 0.169 | 0.35 | `keepout` |
+| `axis_x` | 0.80, 0.15, 0.15 | 1.0 | `axis_x` |
+| `axis_y` | 0.15, 0.60, 0.25 | 1.0 | `axis_y` |
+| `axis_z` | 0.15, 0.30, 0.80 | 1.0 | `axis_z` |
+
+Labels, by file. The root label is the compound's own label; children keep the order shown.
+
+| File | Root label | Child labels, in order |
+|---|---|---|
+| `cell.step` | `cell` | none: the root is the single solid |
+| `block.step` | `block` | `cell_01` to `cell_26` |
+| `box.step` | `box` | `enclosure_body`, `lid`, `end_plate`, `partition`, `compression_plate`, `fuse_0`, `fuse_1` |
+| `box-full.step` | `box_full` | the seven above, then `block` holding `cell_01` to `cell_26` |
+| `assembly.step` | `assembly` | `box_left`, `box_right`, `motor`, `keepout` |
+| `data/cad/assembly-full.step` | `assembly_full` | the four above, then `left_cell_01` to `left_cell_26`, then `right_cell_01` to `right_cell_26` |
+
+`assembly.step` keeps exactly four solids in the order `box_left`, `box_right`, `motor`, `keepout`:
+`cad/viewer.py` raises if the count is not four or if solid 0 is not on the +Y side (WP-06), and
+WP-07 must not edit `cad/viewer.py`.
+
+Colour alpha is written into the STEP as `SURFACE_STYLE_TRANSPARENT(1 - alpha)` and is dropped on
+a build123d re-import (section 5.9), so any check on alpha reads the STEP text, never a re-import.
+
+### 4.11 The datum marker and the Fusion import workflow — `cad/fusion_pack.py`
+
+**Frame.** Every STEP file in this plan is in the vehicle datum frame of the scan pipeline: ISO
+8855, millimetres, X forward, Y left, Z up, origin below the rear axle housing axis
+(`docs/thrifty/2026-09-14-scan-pipeline/plan.md`, the origin decision). The two battery boxes, the
+motor and the keep-out sit at their vehicle coordinates in `assembly.step`; no file carries a
+transform.
+
+**The datum marker.** `artefacts/datum-marker.step` is three solid bars, each 20 mm square, one
+corner on the origin, all in the positive quadrant:
+
+| Label | Occupies | Colour | Length |
+|---|---|---|---|
+| `axis_x` | X 0 to 500, Y 0 to 20, Z 0 to 20 | `axis_x` | 500 mm |
+| `axis_y` | X 0 to 20, Y 0 to 300, Z 0 to 20 | `axis_y` | 300 mm |
+| `axis_z` | X 0 to 20, Y 0 to 20, Z 0 to 200 | `axis_z` | 200 mm |
+
+The three lengths differ on purpose. A swapped axis shows as the wrong bar being longest, a
+mirrored axis as a bar running into negative coordinates, a unit error as a factor of 25.4 or
+1000, and a shifted origin as a bounding-box corner away from (0, 0, 0). The root label is
+`datum_marker`.
+
+**The workflow document.** `artefacts/fusion-import.html` is one self-contained HTML page (18 px
+base font, one centred sheet of 1 220 px maximum width, plain tables, Australian English, no
+external URL) with these sections in this order:
+
+1. **What the files are.** A table of the six STEP files and the mesh, each with its purpose, and
+   the frame statement above.
+2. **Before you import.** Set the document to Z up, then import `datum-marker.step` alone, first,
+   into an empty design.
+3. **The origin and axis check.** A table of the pass criteria: the bounding box of each marker bar
+   as Fusion reports it, the expected values from the table above, and the tolerance, 0.5 mm. If
+   any value fails, stop and note the three observed bar lengths and which Fusion axis each lies
+   along; do not rotate or move anything to make it pass.
+4. **Import the assembly.** `assembly.step` into a new design in the same orientation. A table of
+   the four bodies with name, colour and the expected bounding box in vehicle coordinates, computed
+   by the script from the STEP file, not typed.
+5. **Import the chassis.** The 200 k-face mesh `chassis_datum_200k.stl` as a mesh body, unit
+   millimetres, with the expected bounding box: X -311.4 to 1663.0, Y -587.7 to 562.7, Z 4.3 to
+   1206.1 mm (section 5.9), tolerance 1 mm. A factor of 25.4 means the wrong unit was chosen.
+6. **Combine and look.** With the datum marker, the assembly and the chassis in one design and
+   nothing moved, the marker's bars lie along the chassis' origin, the left box is on the +Y side,
+   the motor is behind the boxes (smaller X), and the keep-out runs along X at Z 340 mm.
+7. **Rules.** The CAD is the master: a placement or parameter change is made in `cad/params.toml`
+   and regenerated, then re-imported. The placement is not verified clear of the frame
+   (section 5.5 and the sweep report), and the plastics are not in the scan.
+8. **Regenerate.** The commands to rebuild every file, from `cad/README.md`.
+
+The document states procedure and pass criteria only. Fusion menu paths appear as the name of the
+setting to look for, never as a click-by-click, because they differ between Fusion releases and
+were not measured (section 5.9).
+
 ---
 
 ## 5. Measured constraints — measured 2026-09-15
@@ -600,6 +700,40 @@ result. Measured on this session's own spikes:
 3. Never read a STEP file, a sweep JSON or a mesh into context. Read counts, the first twenty rows,
    and the script's own summary lines.
 
+### 5.9 Names, colours and Fusion
+
+Measured 2026-10-05 in `.venv-cad` (rebuilt in place from `pipeline/requirements-cad.txt`,
+build123d 0.11.1), on the STEP files merged by WP-06.
+
+| | |
+|---|---|
+| Every committed STEP file today: unit, product names, colours | `SI_UNIT(.MILLI.,.METRE.)` in all five; every `PRODUCT(` name is `COMPOUND`; `COLOUR_RGB` count 0 (grep on `cell`, `block`, `box`, `box-full`, `assembly`) |
+| Baselines before any change: solids, volume, bytes | `cell.step` 1, 406 850.1 mm3, 24 037 · `block.step` 26, 10 578 102.1, 624 555 · `box.step` 7, 3 186 335.6, 346 820 · `box-full.step` 33, 13 764 437.7, 988 797 · `assembly.step` 4, 76 761 150.9, 46 646 (`freecad_check` from `cad/common.py`) |
+| Label and colour on children of a `Compound`, `export_step`, then grep and re-import | `PRODUCT` names `['assembly', 'box_left', 'motor']`; `COLOUR_RGB` count 3; re-import returns the labels and colours; `freecad_check` returns `(2, 175398.22)`, the right solid count and volume |
+| Colour alpha in STEP | `SURFACE_STYLE_TRANSPARENT(0.65000000596)` for alpha 0.35 appears in the file; re-import through build123d returns alpha 1.0, so the alpha is lost on that path |
+| `box-full.step` margin under the 1 MB cap | 988 797 bytes, 11 KB under; names and 33 colour records push it over, hence the 1.5 MB cap in section 2 |
+| Chassis mesh bounding box, `data/derived/chassis_datum_200k.stl`, Open3D vertices | min (-311.38, -587.73, 4.31), max (1663.02, 562.66, 1206.14) mm |
+| `cad/viewer.py` dependence on `assembly.step` | raises unless there are exactly four solids and solid 0 has centre Y > 0 and solid 1 centre Y < 0 (`cad/viewer.py` lines 102 and 108) |
+| `pipeline/config.local.toml` in a fresh worktree | absent: it is git-ignored, so `freecad_check` fails with `FileNotFoundError` until the file is copied from the owner's main checkout |
+| Fusion installed on the owner's workstation | `Fusion360.exe` present under `AppData/Local/Autodesk/webdeploy/production/`; the Fusion API folder is present under `AppData/Roaming/Autodesk/Autodesk Fusion 360/API/` |
+
+**Not measured.** How Fusion treats these files has not been run on any machine. The Autodesk
+support article on Fusion's modelling orientation returned HTTP 403, and a web search returned
+only forum and summary text that disagreed on which orientation is the default and said the
+orientation setting applies to new designs only. So nothing in this plan states what Fusion does
+with Z up, with the origin, or with colour and transparency on import. That is why
+`datum-marker.step` exists: the owner imports it first and reads three numbers.
+
+**Rules that follow:**
+
+1. Verify a name by grepping the STEP text for `PRODUCT('<name>'`, and a colour by grepping for
+   `COLOUR_RGB`; verify alpha by grepping for `SURFACE_STYLE_TRANSPARENT`. A build123d re-import
+   proves names and colours but not alpha.
+2. Names and colours must not change a solid count or a volume. `freecad_check` against the
+   baselines above is the proof, and `git diff --stat` showing only STEP files changed is the
+   second proof.
+3. Item cost is as in 5.8; WP-07 has 11 items.
+
 ---
 
 ## 6. Execution rules — every work package obeys these
@@ -734,7 +868,7 @@ Findings are triaged by the owner, not by the finding session.
 
 ## 8. Work packages
 
-**Order:** 1 -> 2 -> 3 -> 4 -> owner sets `[placement]` -> 5 -> 6. Strictly sequential: every WP
+**Order:** 1 -> 2 -> 3 -> 4 -> owner sets `[placement]` -> 5 -> 6 -> 7. Strictly sequential: every WP
 consumes the previous one's committed artefact.
 
 **Precondition — this plan must be merged to `main` before WP1 starts.** Every starter prompt
@@ -777,6 +911,13 @@ it. Until the plan is on `main`, that path does not exist and every session stop
 | `cad/viewer.py` | WP6 | owner |
 | `docs/thrifty/2026-09-15-battery-boxes/artefacts/viewer.html` | WP6 | owner |
 | `docs/thrifty/2026-09-15-battery-boxes/artefacts/sam-battery-boxes.html` | WP6 | owner, Sam |
+| `cad/common.py` `COLOURS` | WP7 | owner |
+| `docs/thrifty/2026-09-15-battery-boxes/artefacts/cell.step`, `block.step`, `box.step`, `box-full.step`, `assembly.step`, named and coloured | WP7 | owner, Sam |
+| `data/cad/assembly-full.step` named and coloured | WP7 (local, git-ignored) | owner |
+| `data/cad/verify_wp07.py` | WP7 (local, git-ignored scratch) | owner |
+| `cad/fusion_pack.py` | WP7 | owner |
+| `docs/thrifty/2026-09-15-battery-boxes/artefacts/datum-marker.step` | WP7 | owner |
+| `docs/thrifty/2026-09-15-battery-boxes/artefacts/fusion-import.html` | WP7 | owner |
 
 | WP | Title | Model | Effort | Item cap | Depends on | Writes |
 |---|---|---|---|---|---|---|
@@ -786,6 +927,7 @@ it. Until the plan is on `main`, that path does not exist and every session stop
 | 4 | Clearance sweep and renders | Sonnet | medium | 25 (11 items) | WP3 | `cad/clearance.py`, eight artefacts |
 | 5 | Mount pickups | Sonnet | medium | 25 (7 items) | WP4 and the owner's placement | `cad/mounts.py`, two artefacts |
 | 6 | Viewer and handover | Sonnet | medium | 25 (10 items) | WP5 | `cad/viewer.py`, two artefacts |
+| 7 | Named STEP and Fusion import pack | Sonnet | medium | 25 (11 items) | WP6 | `cad/common.py`, `cad/cell.py`, `cad/enclosure.py`, `cad/assembly.py`, `cad/fusion_pack.py`, seven artefacts, one local file |
 
 ---
 
@@ -1584,6 +1726,180 @@ your branch cut from origin/main, push it, and open one PR. Then STOP - the owne
 merges. Do NOT add commits to a PR that is already open.
 ```
 
+### WP7 — Name and colour every STEP body, and build the Fusion import pack
+
+**Model:** Sonnet · **Effort:** medium · **Item cap:** 25 (this WP has 11 items) ·
+**Depends on:** WP6 · **Branch:** `thrifty/2026-09-15-battery-boxes/wp-07` · **Writes:**
+`cad/common.py`, `cad/cell.py`, `cad/enclosure.py`, `cad/assembly.py`, `cad/fusion_pack.py`,
+`cad/README.md`, the five STEP artefacts, `artefacts/datum-marker.step`,
+`artefacts/fusion-import.html`, `data/cad/assembly-full.step`
+
+**Goal.** Every STEP body carries the name and colour of section 4.10 with no change to any
+geometry, and the owner has a datum marker and a workflow document that prove, on import into
+Fusion, that the origin, axes and units arrived unchanged.
+
+**Done when.** (1) For each of `cell.step`, `block.step`, `box.step`, `box-full.step`,
+`assembly.step` and `data/cad/assembly-full.step`, every label in section 4.10 appears as a
+`PRODUCT('<label>'` in the STEP text, the FreeCAD solid count and volume equal the section 5.9
+baselines within 0.01 %, and each file is under 1 500 000 bytes. (2) `assembly.step` has exactly four
+solids and `cad/viewer.py`'s `tessellate_assembly` still returns four bodies. (3) `git diff --stat`
+against `origin/main` shows no change to `placement.json`, `box-shell.stl`, any report, `viewer.html`
+or `sam-battery-boxes.html`. (4) `datum-marker.step` has three solids totalling 400 000 mm3 and the
+three bounding boxes of section 4.11. (5) `fusion-import.html` has the eight sections of section
+4.11, is under 1 000 000 bytes, has no `http` URL, and contains none of the strings "draft",
+"corrected", "previously", "verification" or "todo".
+
+```
+WP-07 of the battery-boxes plan: names, colours and the Fusion import pack.
+Repo: electric-butterfly/equad. Work from the root of your local clone - find it, do not
+assume a path. Make NO writes outside this repo.
+
+PRECONDITION 1 - right tree. Run `git rev-parse --show-toplevel` and
+`git remote get-url origin`. origin must be electric-butterfly/equad, and every path
+below is relative to the toplevel the first command printed. If origin names a
+different repo, or git errors because this is not a work tree, say so and STOP,
+and ask the owner to repoint the session. Do not clone it, do not search the
+filesystem for a copy, do not guess a path. Write nothing.
+
+PRECONDITION 2 - plan present. Confirm docs/thrifty/2026-09-15-battery-boxes/plan.md
+exists in that tree and contains a heading line starting "### WP7". If it does not,
+the plan PR has not merged - say so and STOP. Write nothing: the directory you would
+write to does not exist either. Do not improvise a substitute.
+
+PRECONDITION 3 - inputs. Confirm these exist: cad/viewer.py, cad/cell.py,
+cad/enclosure.py, cad/assembly.py, cad/common.py, and under
+docs/thrifty/2026-09-15-battery-boxes/artefacts/: cell.step, block.step, box.step,
+box-full.step, assembly.step, sam-battery-boxes.html. If any does not, the producing
+PR has not merged. Write docs/thrifty/2026-09-15-battery-boxes/status/WP-07.md with
+state: blocked and the absent path in Notes, commit, push, open one PR, and STOP. Do
+not reconstruct it.
+Confirm pipeline/config.local.toml exists (it is git-ignored). If it does not, write
+state: blocked with "pipeline/config.local.toml missing - copy it from the owner's
+main checkout" in Notes, commit, push, open one PR, and STOP.
+Confirm .venv-cad/Scripts/python.exe exists. If it does not, rebuild it in place:
+`python -m venv .venv-cad` then
+`.venv-cad/Scripts/python -m pip install -r pipeline/requirements-cad.txt`, and
+confirm `.venv-cad/Scripts/python -c "import build123d; print(build123d.__version__)"`
+prints 0.11.1. Do not create a venv anywhere else.
+
+BRANCH. Your branch is thrifty/2026-09-15-battery-boxes/wp-07 - derived from the
+plan, never invented. Before touching anything:
+  git fetch origin
+  git ls-remote --exit-code --heads origin thrifty/2026-09-15-battery-boxes/wp-07
+A missing branch means a fresh start. Cut it from origin/main:
+  git switch -c thrifty/2026-09-15-battery-boxes/wp-07 origin/main
+Write docs/thrifty/2026-09-15-battery-boxes/status/WP-07.md with state: started.
+Commit it ("chore(thrifty): WP-07 start") and push -u. Do NOT open a PR yet. That
+commit only stakes the branch so a dead session is still findable. The PR comes
+once, at the very end of this prompt.
+An existing branch means a RESUME, not a new start. Check it out:
+  git switch -c thrifty/2026-09-15-battery-boxes/wp-07 origin/thrifty/2026-09-15-battery-boxes/wp-07
+Read that status file and carry on from its resume-from, setting state:
+in-progress. Do not start over and do not re-apply what is already done.
+Never commit to main.
+
+THEN read docs/thrifty/2026-09-15-battery-boxes/plan.md sections 4.10, 4.11, 5.8, 5.9
+and 6, and cad/README.md. Read cad/cell.py, cad/enclosure.py and cad/assembly.py only
+around the lines that build and export each body (grep for "Compound(" and
+"export_step(").
+
+Load: ToolSearch query "select:Read,Write,Edit,Bash,Grep"
+
+Do NOT load or call WebSearch or WebFetch. Section 5.9 lists what was not measured
+about Fusion; searching for it invites writing unmeasured Fusion behaviour into a
+document the owner will trust.
+Do NOT load or call the Artifact tool. Both outputs are repo files; publishing them
+would put project geometry on a hosted page nobody asked for.
+Do NOT load or call the Agent tool. Eleven items, one session.
+Do NOT start Fusion or any Autodesk executable. The Fusion import check is the
+owner's; a session cannot read a Fusion window and would invent the result.
+
+TASK. Give every STEP body the label and colour of plan section 4.10, then write
+cad/fusion_pack.py per section 4.11. Geometry must not change.
+Hard cap: 25 items this session. 25 is the measured budget from section 5.8, not a
+target - reaching it is a normal ending, not a failure.
+  1. CANARY. Before editing, run freecad_check (cad/common.py) on the committed
+     artefacts/cell.step -> expect 1 solid, 406850.1 mm3; if not, STOP and report.
+     Then add COLOURS to cad/common.py (section 4.10 table, nothing else), set
+     label "cell" and colour "cell" in cad/cell.py, run
+     `.venv-cad/Scripts/python cad/cell.py` (no --report). Show: the PRODUCT names in
+     cell.step, the COLOUR_RGB count, and the freecad line.
+  2. In cad/cell.py label block.step children cell_01 .. cell_26 and the root
+     "block", all coloured "cell"; run cad/cell.py again.
+  3. In cad/enclosure.py label and colour the seven parts and the roots "box" and
+     "box_full" per section 4.10, including the block inside box-full.step; run
+     `.venv-cad/Scripts/python cad/enclosure.py` (no --report).
+  4. In cad/assembly.py label and colour box_left, box_right, motor, keepout in that
+     order with root "assembly", and the cells in assembly-full per section 4.10; run
+     `.venv-cad/Scripts/python cad/assembly.py`.
+  5. Write data/cad/verify_wp07.py (scratch, not committed). For each of the six
+     STEP files it prints: the sorted set difference (expected labels minus labels
+     found by regex PRODUCT\('([^']*)' on the file text) -> expect empty; COLOUR_RGB
+     count -> expect more than 0; solid count and volume from freecad_check against the
+     section 5.9 baselines (assembly-full: 56 solids, no baseline volume, report it);
+     bytes -> expect under 1500000. For assembly.step also: count of
+     SURFACE_STYLE_TRANSPARENT -> expect more than 0.
+  6. Run `git diff --stat origin/main` -> expect only the five STEP files, cad/common.py,
+     cad/cell.py, cad/enclosure.py, cad/assembly.py and the status file; then
+     `git diff --quiet origin/main -- docs/thrifty/2026-09-15-battery-boxes/artefacts/placement.json docs/thrifty/2026-09-15-battery-boxes/artefacts/box-shell.stl`
+     -> expect exit 0. Any other changed file: STOP and report both lists.
+  7. Run `.venv-cad/Scripts/python -c "import sys; sys.path.insert(0,'cad'); import viewer; from common import repo_root; r=viewer.tessellate_assembly(repo_root()); print(sorted(r))"`
+     -> expect the four names box_left, box_right, keepout, motor. It writes nothing;
+     confirm `git status --short` is unchanged afterwards.
+  8. Write cad/fusion_pack.py: it writes artefacts/datum-marker.step (section 4.11
+     table, labels and colours, freecad_check printed) and artefacts/fusion-import.html.
+     Run it. Show the freecad line and the three bounding boxes.
+  9. fusion-import.html: the eight sections of section 4.11 in order; the four assembly
+     body bounding boxes computed by the script from artefacts/assembly.step (import_step,
+     bounding_box), never typed; the chassis box from section 5.9; Australian English;
+     no external URL; no narrative about how the page was produced. Show `grep -c "<h2"`
+     -> expect 8.
+ 10. Run the document checks: grep -ciE "draft|corrected|previously|verification|todo"
+     on fusion-import.html -> expect 0; `grep -c "http"` -> expect 0; bytes -> expect
+     under 1000000.
+ 11. Add one row for fusion_pack.py and its run line to cad/README.md. Run
+     `git status --short` -> expect only the files named in item 6, cad/fusion_pack.py,
+     cad/README.md, datum-marker.step and fusion-import.html.
+
+PROCEDURE:
+1. CANARY = item 1 only. Stop. Show the PRODUCT names, the COLOUR_RGB count and the
+   freecad line. Wait for the go-ahead.
+2. Then items 2-6, then items 7-11. After each batch: report, update the status file
+   (progress, resume-from, updated), commit, push. Serial calls only. No PR yet.
+3. If you hit the hard cap, or context runs short, or the owner pauses you: write
+   state: paused with resume-from and pause-reason, commit, push, and STOP. Do
+   NOT open a PR yet - that is the job of the session that resumes this prompt.
+
+VERIFY BEFORE FINISHING:
+  .venv-cad/Scripts/python data/cad/verify_wp07.py   -> every label present, every solid
+     count and volume equal to the baselines within 0.01 percent, every file under 1500000 bytes
+  .venv-cad/Scripts/python cad/fusion_pack.py   -> prints the datum-marker freecad line:
+     3 solids, 400000 mm3
+  git diff --quiet origin/main -- docs/thrifty/2026-09-15-battery-boxes/artefacts/placement.json docs/thrifty/2026-09-15-battery-boxes/artefacts/box-shell.stl docs/thrifty/2026-09-15-battery-boxes/artefacts/viewer.html docs/thrifty/2026-09-15-battery-boxes/artefacts/sam-battery-boxes.html   -> exit 0
+  grep -ciE "draft|corrected|previously|verification|todo" docs/thrifty/2026-09-15-battery-boxes/artefacts/fusion-import.html   -> 0
+Report the numbers. If any does not match, say so and do not claim completion.
+
+SCOPE FENCE. You may edit cad/common.py (add COLOURS only), cad/cell.py,
+cad/enclosure.py and cad/assembly.py (labels and colours only), cad/README.md (one row
+and one run line), write cad/fusion_pack.py, regenerate the five STEP artefacts, write
+the two new artefacts, scratch files under data/cad/, and your own status and findings
+files. Do NOT edit cad/params.toml, cad/viewer.py, cad/clearance.py or cad/mounts.py.
+Do NOT change any dimension, location, solid order or file name. Do NOT regenerate
+reports with --report, viewer.html or sam-battery-boxes.html. Do NOT edit anything
+under docs/thrifty/2026-09-14-scan-pipeline/ or pipeline/. Do NOT state in any
+document what Fusion does with orientation, origin, colour or transparency; the plan
+did not measure it. Out-of-scope observations go in
+docs/thrifty/2026-09-15-battery-boxes/findings/WP-07.md, not into an action.
+
+STOP CONDITION: when every item in your list has been handled once, or the hard
+cap is reached. Do not look for more work.
+
+Write docs/thrifty/2026-09-15-battery-boxes/status/WP-07.md per section 6 of the
+plan. On a terminal state - done, blocked, stopped, or canary-waiting - commit to
+your branch cut from origin/main, push it, and open one PR. Then STOP - the owner
+merges. Do NOT add commits to a PR that is already open.
+```
+
 ---
 
 ## 9. Owner actions
@@ -1599,6 +1915,8 @@ merges. Do NOT add commits to a PR that is already open.
 | 7 | **After WP4: choose the placement.** Edit `[placement]` in `cad/params.toml` to the chosen `x, y, z, lean_deg` and merge that as its own PR. WP5's precondition checks that this commit is newer than the sweep report. | Between WP4 and WP5 |
 | 8 | **Callipers on the lower rails and the four engine-mount plates** (section 5.1) before Sam drills anything from the pickup table. | Before fabrication |
 | 9 | **Resume anything showing `paused`.** Paste the same starter prompt into a fresh session; it picks up from the branch. A paused WP has no PR and will not surface as your turn. | Whenever the rollup shows one |
+| 10 | **After WP7 merges, copy the iteration folder and run the Fusion import check.** Copy `artefacts/` into a new dated folder on the shared drive, follow `fusion-import.html` with `datum-marker.step` alone first, and read the three bar lengths and the bounding-box corner. If any check fails, bring the observed numbers back; do not move the geometry in Fusion to make it fit. | After WP7 |
+| 11 | **Make `pipeline/config.local.toml` available in any fresh worktree before WP7.** It is git-ignored, and without it the STEP round-trip check cannot run. | Before WP7 |
 
 ---
 
@@ -1616,5 +1934,9 @@ merges. Do NOT add commits to a PR that is already open.
 - `data/derived/` is produced by the scan pipeline and git-ignored. WP4, WP5 and WP6 read it. A
   machine without it cannot run those WPs; the pipeline is re-run first (section 4 of the scan
   pipeline plan).
+- `docs/thrifty/2026-09-15-battery-boxes/artefacts/box-check-viewer.html` is a WP-04 by-product named in `findings/WP-04.md`; WP7 does not
+  touch, regenerate or delete it.
+- `data/derived/` and `pipeline/config.local.toml` are local and git-ignored and are absent from a
+  fresh worktree. WP7 records `blocked` if the config file is missing; it does not recreate either.
 - The README's battery-box paragraph describes the inverted V and the channel as the duct. Nothing
   in this plan edits `README.md`. Resolving any of the above is NOT part of this plan.
