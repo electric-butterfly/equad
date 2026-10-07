@@ -5,6 +5,20 @@ import subprocess
 import tomllib
 from pathlib import Path
 
+# name -> (r, g, b, alpha), channels 0 to 1; plan section 4.10
+COLOURS = {
+    "cell": (0.31, 0.62, 0.42, 1.0),
+    "shell": (0.169, 0.424, 0.561, 1.0),
+    "lid": (0.357, 0.608, 0.741, 1.0),
+    "plate": (0.541, 0.604, 0.639, 1.0),
+    "fuse": (0.878, 0.690, 0.188, 1.0),
+    "motor": (0.851, 0.510, 0.169, 1.0),
+    "keepout": (0.753, 0.224, 0.169, 0.35),
+    "axis_x": (0.80, 0.15, 0.15, 1.0),
+    "axis_y": (0.15, 0.60, 0.25, 1.0),
+    "axis_z": (0.15, 0.30, 0.80, 1.0),
+}
+
 
 def repo_root() -> Path:
     out = subprocess.run(
@@ -67,7 +81,7 @@ def check_step(shape, path: Path) -> None:
     """
     n_fc, v_fc = freecad_check(path)
     n_bd = len(shape.solids())
-    v_bd = shape.volume
+    v_bd = sum(solid.volume for solid in shape.solids())
 
     ok = n_fc == n_bd
     if v_bd != 0:

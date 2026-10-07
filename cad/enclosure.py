@@ -4,9 +4,9 @@ import argparse
 import sys
 from pathlib import Path
 
-from build123d import Align, Axis, Box, Cylinder, Pos, Rot, chamfer
+from build123d import Align, Axis, Box, Color, Cylinder, Pos, Rot, chamfer
 
-from common import artefacts_dir, export_step, load_params
+from common import COLOURS, artefacts_dir, export_step, load_params
 
 sys.path.insert(0, str(Path(__file__).parent))
 from cell import block as cell_block  # noqa: E402
@@ -389,12 +389,22 @@ def build_all(params: dict, chamfer_len: float = None):
 def box_solids(built):
     from build123d import Compound
 
-    solids = [built["body"], built["lid"], built["end_plate"], built["partition"],
-              built["compression_plate"]]
+    parts = [
+        (built["body"], "enclosure_body", "shell"),
+        (built["lid"], "lid", "lid"),
+        (built["end_plate"], "end_plate", "plate"),
+        (built["partition"], "partition", "plate"),
+        (built["compression_plate"], "compression_plate", "plate"),
+    ]
     if built["spacer"] is not None:
-        solids.append(built["spacer"])
-    solids.extend(built["fuse_shapes"])
-    return Compound(children=solids)
+        parts.append((built["spacer"], "spacer", "plate"))
+    parts.extend(
+        (shape, f"fuse_{i}", "fuse") for i, shape in enumerate(built["fuse_shapes"])
+    )
+    for shape, label, colour in parts:
+        shape.label = label
+        shape.color = Color(*COLOURS[colour])
+    return Compound(children=[shape for shape, _, _ in parts], label="box")
 
 
 def box_shell(params: dict, chamfer_len: float = None):
@@ -476,7 +486,9 @@ def main():
     # once its children are reused below to build box_full.
     box_n_solids, box_volume = len(box_compound.solids()), box_compound.volume
 
-    box_full = Compound(children=list(box_solids(built).children) + [cell_block(params)[0]])
+    box_full = Compound(
+        children=list(box_solids(built).children) + [cell_block(params)[0]], label="box_full"
+    )
     box_full_step = artefacts / "box-full.step"
     export_step(box_full, box_full_step)
     full_n_solids, full_volume = len(box_full.solids()), box_full.volume

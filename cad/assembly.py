@@ -6,9 +6,9 @@ import math
 import sys
 from pathlib import Path
 
-from build123d import Align, Compound, Cylinder, Location, Matrix, Plane, Pos, Rot, Vector
+from build123d import Align, Color, Compound, Cylinder, Location, Matrix, Plane, Pos, Rot, Vector
 
-from common import artefacts_dir, export_step, load_params
+from common import COLOURS, artefacts_dir, export_step, load_params
 
 sys.path.insert(0, str(Path(__file__).parent))
 from cell import block as cell_block  # noqa: E402
@@ -193,15 +193,27 @@ def main():
     artefacts = artefacts_dir()
 
     left_shell, right_shell = build_shells(params)
-    assembly = Compound(children=[left_shell, right_shell, motor, keepout])
+    for shape, label, colour in (
+        (left_shell, "box_left", "shell"),
+        (right_shell, "box_right", "shell"),
+        (motor, "motor", "motor"),
+        (keepout, "keepout", "keepout"),
+    ):
+        shape.label = label
+        shape.color = Color(*COLOURS[colour])
+    assembly = Compound(children=[left_shell, right_shell, motor, keepout], label="assembly")
     assembly_step = artefacts / "assembly.step"
     export_step(assembly, assembly_step)
     assembly_n_solids, assembly_volume = len(assembly.solids()), assembly.volume
 
     left_cells, right_cells = build_cells(params)
+    for side, placed in (("left", left_cells), ("right", right_cells)):
+        for c in placed.children:
+            c.label = f"{side}_{c.label}"
     full = Compound(
-        children=[left_shell, right_shell, motor, keepout] + list(left_cells.solids())
-        + list(right_cells.solids())
+        children=[left_shell, right_shell, motor, keepout] + list(left_cells.children)
+        + list(right_cells.children),
+        label="assembly_full",
     )
     full_step = params_repo_root(params) / "data" / "cad" / "assembly-full.step"
     export_step(full, full_step)
