@@ -10,6 +10,7 @@ All parameters come from `params.toml`. Run every script from the repo root.
 | `clearance.py` | `.venv-mesh` | 4 | Placement evaluation, the sweep, section renders |
 | `mounts.py` | `.venv-mesh` | 5 | Frame primitives within reach of the placed box |
 | `viewer.py` | `.venv-cad` | 6 | `viewer.html` and `sam-battery-boxes.html` |
+| `fusion_pack.py` | `.venv-cad` | 7 | `datum-marker.step` and `fusion-import.html` |
 
 Every script resolves the repo root with `git rev-parse --show-toplevel`, loads `cad/params.toml`,
 writes only to `data/cad/` and `docs/thrifty/2026-09-15-battery-boxes/artefacts/`, and refuses to
@@ -23,4 +24,5 @@ run if a named input is missing. `common.py` reads `freecad_cmd` from
 .venv-mesh/Scripts/python cad/clearance.py
 .venv-mesh/Scripts/python cad/mounts.py
 .venv-cad/Scripts/python cad/viewer.py
+.venv-cad/Scripts/python cad/fusion_pack.py
 ```

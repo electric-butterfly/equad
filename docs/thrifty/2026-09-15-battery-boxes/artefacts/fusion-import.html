@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>eQuad battery boxes: Fusion import</title>
+<style>
+  :root { --bg:#f3f5f6; --paper:#ffffff; --border:#dde3e6; --ink:#1a2226; --muted:#5b6b74;
+          --accent:#2b6c8f; --accent-tint:#e5eef2; --row-alt:#f6f8f9; }
+  * { box-sizing: border-box; }
+  body { background:var(--bg); color:var(--ink); font-family: system-ui, -apple-system, sans-serif;
+         font-size:18px; margin:0; padding:40px 16px; line-height:1.5; }
+  .sheet { max-width:1220px; margin:0 auto; background:var(--paper); border:1px solid var(--border);
+           border-radius:14px; padding:48px; display:flex; flex-direction:column; gap:28px; }
+  header { border-bottom:3px solid var(--accent); padding-bottom:18px; }
+  h1 { margin:0 0 6px 0; font-size:1.6em; }
+  header p { margin:0; color:var(--muted); }
+  h2 { font-size:1.2em; border-left:4px solid var(--accent); padding-left:12px; margin:0 0 10px 0; }
+  table { border-collapse:collapse; width:100%; font-size:0.85em; }
+  th, td { border:1px solid var(--border); padding:6px 10px; text-align:left; vertical-align:top; }
+  th { background:var(--accent-tint); }
+  tr:nth-child(even) { background:var(--row-alt); }
+  code, .mono { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size:0.92em; }
+  p { margin:0 0 10px 0; }
+  ol, ul { margin:0; padding-left:22px; }
+  pre { background:var(--row-alt); border:1px solid var(--border); border-radius:6px; padding:10px 14px;
+        font-size:0.85em; overflow-x:auto; margin:0; }
+  a { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <header>
+    <h1>Importing the battery boxes into Fusion</h1>
+    <p>Files, import order and the checks that prove the origin, axes and units arrived unchanged.</p>
+  </header>
+
+  <section>
+    <h2>1. What the files are</h2>
+    <p>Every file is in the vehicle datum frame: ISO 8855, millimetres, X forward, Y left, Z up,
+    origin below the rear axle housing axis. No file carries a transform; each body sits at its
+    vehicle coordinates.</p>
+    <table>
+      <thead><tr><th>File</th><th>What it holds</th></tr></thead>
+      <tbody>
+        <tr><td><code>datum-marker.step</code></td><td>Three bars from the origin. Import this first, alone.</td></tr>
+        <tr><td><code>assembly.step</code></td><td>Both battery boxes, the motor placeholder and the propeller-shaft keep-out, at their vehicle coordinates.</td></tr>
+        <tr><td><code>box.step</code></td><td>One enclosure with its lid, plates and fuses, no cells.</td></tr>
+        <tr><td><code>box-full.step</code></td><td>One enclosure with its 26 cells.</td></tr>
+        <tr><td><code>block.step</code></td><td>The 26-cell block on its own.</td></tr>
+        <tr><td><code>cell.step</code></td><td>One CALB L148N58A cell.</td></tr>
+        <tr><td><code>chassis_datum_200k.stl</code></td><td>The scanned frame, 200 000 faces, in the same vehicle frame. A mesh, not a solid; it lives in the cleaned scan folder, not in this folder.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>2. Before you import</h2>
+    <ol>
+      <li>Start an empty design and set its modelling orientation to Z up. Look for the setting
+      named Default modeling orientation in Preferences, or the equivalent in your release.</li>
+      <li>Import <code>datum-marker.step</code> alone, first, before anything else.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>3. The origin and axis check</h2>
+    <p>The three bars have different lengths on purpose (axis_x 500.0 mm, axis_y 300.0 mm, axis_z 200.0 mm). Each starts at the
+    origin and runs in the positive direction. Read the bounding box of each bar in Fusion and
+    compare it with this table, in Fusion's X, Y and Z.</p>
+    <table>
+      <thead><tr><th>Body</th><th>Minimum corner (mm)</th><th>Maximum corner (mm)</th><th>Tolerance</th></tr></thead>
+      <tbody>
+        <tr><td><code>axis_x</code></td><td>(0.0, 0.0, 0.0)</td><td>(500.0, 20.0, 20.0)</td><td>0.5 mm</td></tr>
+        <tr><td><code>axis_y</code></td><td>(0.0, 0.0, 0.0)</td><td>(20.0, 300.0, 20.0)</td><td>0.5 mm</td></tr>
+        <tr><td><code>axis_z</code></td><td>(0.0, 0.0, 0.0)</td><td>(20.0, 20.0, 200.0)</td><td>0.5 mm</td></tr>
+      </tbody>
+    </table>
+    <p>What a failure looks like: the wrong bar longest means an axis is swapped; a bar running
+    into negative coordinates means an axis is mirrored; sizes out by a factor of 25.4 or 1000
+    mean a unit error; a minimum corner away from (0.0, 0.0, 0.0) means the origin moved.</p>
+    <p>If any value fails, stop. Write down the three observed bar lengths and which Fusion axis
+    each one lies along. Do not rotate or move anything to make it pass.</p>
+  </section>
+
+  <section>
+    <h2>4. Import the assembly</h2>
+    <p>With the check in section 3 passed, import <code>assembly.step</code> into a new design in
+    the same orientation. Each body should appear under its name with its own colour; the keep-out
+    is written with 35 % opacity. Axis-aligned bounding boxes, in vehicle coordinates:</p>
+    <table>
+      <thead><tr><th>Body</th><th>Minimum corner (mm)</th><th>Maximum corner (mm)</th><th>Tolerance</th></tr></thead>
+      <tbody>
+        <tr><td><code>box_left</code></td><td>(510.2, 15.0, 288.5)</td><td>(976.2, 261.6, 620.2)</td><td>0.5 mm</td></tr>
+        <tr><td><code>box_right</code></td><td>(510.2, -261.6, 288.5)</td><td>(976.2, -15.0, 620.2)</td><td>0.5 mm</td></tr>
+        <tr><td><code>motor</code></td><td>(122.6, -105.0, 485.0)</td><td>(381.4, 105.0, 695.0)</td><td>0.5 mm</td></tr>
+        <tr><td><code>keepout</code></td><td>(400.0, -60.0, 280.0)</td><td>(1200.0, 60.0, 400.0)</td><td>0.5 mm</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>5. Import the chassis</h2>
+    <p>Insert <code>chassis_datum_200k.stl</code> as a mesh body, choosing millimetres if you are
+    asked for a unit. Expected bounding box:</p>
+    <table>
+      <thead><tr><th>Body</th><th>Minimum corner (mm)</th><th>Maximum corner (mm)</th><th>Tolerance</th></tr></thead>
+      <tbody>
+        <tr><td><code>chassis_datum_200k</code></td><td>(-311.4, -587.7, 4.3)</td><td>(1663.0, 562.7, 1206.1)</td><td>1.0 mm</td></tr>
+      </tbody>
+    </table>
+    <p>A result 25.4 times too large or small means the wrong unit was chosen.</p>
+  </section>
+
+  <section>
+    <h2>6. Combine and look</h2>
+    <p>With the datum marker, the assembly and the chassis in one design and nothing moved, the
+    marker's bars lie along the chassis' origin, the left box is on the +Y side, the motor is
+    behind the boxes (smaller X), and the keep-out runs along X at Z 340 mm.</p>
+  </section>
+
+  <section>
+    <h2>7. Rules</h2>
+    <ul>
+      <li>The CAD is the master. A placement or parameter change is made in <code>cad/params.toml</code>,
+      the files are regenerated, and the new files are imported again. Do not edit the imported
+      geometry and treat it as the source.</li>
+      <li>The committed placement has not been checked clear of the frame: no placement in the swept
+      grid passed (<a href="sweep-report.md">sweep-report.md</a>).</li>
+      <li>The plastics, foot boards, tank and seat base are not in the scan and are not in these files.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>8. Regenerate</h2>
+    <p>From the repository root:</p>
+    <pre>.venv-cad/Scripts/python cad/cell.py
+.venv-cad/Scripts/python cad/enclosure.py
+.venv-cad/Scripts/python cad/assembly.py
+.venv-cad/Scripts/python cad/fusion_pack.py</pre>
+  </section>
+</div>
+</body>
+</html>
