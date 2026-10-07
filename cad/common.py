@@ -81,7 +81,7 @@ def check_step(shape, path: Path) -> None:
     """
     n_fc, v_fc = freecad_check(path)
     n_bd = len(shape.solids())
-    v_bd = shape.volume
+    v_bd = sum(solid.volume for solid in shape.solids())
 
     ok = n_fc == n_bd
     if v_bd != 0:
