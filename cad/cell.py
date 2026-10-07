@@ -3,9 +3,9 @@
 import argparse
 from pathlib import Path
 
-from build123d import Align, Box, Cylinder, Pos, Rot
+from build123d import Align, Box, Color, Compound, Cylinder, Pos, Rot
 
-from common import artefacts_dir, check_step, load_params, repo_root
+from common import COLOURS, artefacts_dir, check_step, load_params, repo_root
 
 
 def cell(params: dict):
@@ -22,7 +22,10 @@ def cell(params: dict):
     stud2 = Pos(c["stud_pitch"] / 2, 0, height) * Cylinder(
         c["stud_d"] / 2, stud_h, align=stud_align
     )
-    return body + stud1 + stud2
+    shape = body + stud1 + stud2
+    shape.label = "cell"
+    shape.color = Color(*COLOURS["cell"])
+    return shape
 
 
 def block(params: dict):
@@ -62,12 +65,12 @@ def block(params: dict):
             flipped = b["flip_odd"] and (j % 2 == 1)
             rot = Rot(Z=180) if flipped else Rot(Z=0)
             placed = Pos(x_c, y_c, 0) * rot * cell(params)
+            placed.label = f"cell_{len(cells) + 1:02d}"
+            placed.color = Color(*COLOURS["cell"])
             cells.append(placed)
             rows.append((col_idx, j, x_c, y_c, 0.0, flipped))
 
-    compound = cells[0]
-    for s in cells[1:]:
-        compound = compound + s
+    compound = Compound(children=cells, label="block")
     return compound, rows, stack_len, needed, internal_y
 
 
